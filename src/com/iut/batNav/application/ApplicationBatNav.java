@@ -12,23 +12,16 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import ihm.AffichageFenetreApplication;
 import ihm.AffichagePlateauBateaux;
-import ihm.Pannel;
+
 
 
 public class ApplicationBatNav extends JFrame{
 	public static void main(String[] args) {
 		
-		JFrame fenetre = new JFrame();
-		fenetre.setDefaultLookAndFeelDecorated(false); 
-		fenetre.setExtendedState(fenetre.MAXIMIZED_BOTH);
-		fenetre.setTitle("Bataille Navale");
-		fenetre.setJMenuBar(new Menu());
-		//fenetre.setUndecorated(true);
-		fenetre.setDefaultCloseOperation(fenetre.DISPOSE_ON_CLOSE);
-		fenetre.getContentPane().add(new Pannel());
-		fenetre.repaint();
-		fenetre.setVisible(true);
+		AffichageFenetreApplication fenetre = new AffichageFenetreApplication();
+		
 		
 		
 		
