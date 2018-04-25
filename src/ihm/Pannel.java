@@ -91,6 +91,9 @@ public class Pannel extends JPanel implements ActionListener{
 	private boolean JRBsousMarin=false;
 	private boolean JRBcroiseur=false;
 	
+	
+	
+	
 	public Pannel() {
 		this.setLayout(new BorderLayout());
 		
