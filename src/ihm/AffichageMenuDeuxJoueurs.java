@@ -34,8 +34,11 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements ActionListener{
 	
 	this.setLayout(new BorderLayout());
 
-	//jp_boutonMenu.setLayout(new GridLayout(4,2));
-	//jp_menu.setLayout(new GridBagLayout());
+	jp_boutonMenu = new JPanel();
+	jp_menu = new JPanel();
+	
+	jp_boutonMenu.setLayout(new GridLayout(4,2));
+	jp_menu.setLayout(new GridBagLayout());
 	
 	
 	jl_texte = new JLabel("");
@@ -51,7 +54,7 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements ActionListener{
 	// ajout des composants graphiques
 	
 	
-	/*this.add(jp_menu, BorderLayout.CENTER);
+	this.add(jp_menu, BorderLayout.CENTER);
 	jp_menu.add(jp_boutonMenu);
 	
 	jp_boutonMenu.add(jl_nomJ1);
@@ -63,7 +66,7 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements ActionListener{
 	jp_boutonMenu.add(jb_quitter);
 	
 	jb_nouvellePartie.addActionListener(this);
-	jb_quitter.addActionListener(this);*/
+	jb_quitter.addActionListener(this);
 	
 	this.add(jl_texte, BorderLayout.NORTH);
 
@@ -71,7 +74,18 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getSource()==jb_nouvellePartie) {
+			this.removeAll();
+			System.out.println("vjksbvj");
+			this.add(new NouvellePartieDeuxJoueurs());
+			
+			this.repaint();
+			this.validate();
+		}
+		
+		if(e.getSource()== jb_quitter) {
+			System.exit(0);			
+		}
 		
 	}
 }

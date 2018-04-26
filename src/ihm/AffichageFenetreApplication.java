@@ -14,7 +14,11 @@ public class AffichageFenetreApplication extends JFrame {
 	
 		//this.setUndecorated(true);
 		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+<<<<<<< refs/remotes/origin/master
 		this.getContentPane().add(new AffichageMenuDemarrage());
+=======
+		this.getContentPane().add(new AffichageMenuDeuxJoueurs());
+>>>>>>> NouvellePartieDeuxJoueurs
 		this.repaint();
 		this.setVisible(true);
 	}
