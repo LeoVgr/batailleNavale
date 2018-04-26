@@ -76,7 +76,7 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==jb_nouvellePartie) {
 			this.removeAll();
-			System.out.println("vjksbvj");
+			
 			this.add(new NouvellePartieDeuxJoueurs());
 			
 			this.repaint();
