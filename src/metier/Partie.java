@@ -19,7 +19,7 @@ public class Partie {
 	 * @param plateau
 	 */
 	public Partie(Plateau[] plateau) {
-		this.plateau= new Plateau[4];
+		this.plateau= new Plateau[2];
 	}
 	
 	

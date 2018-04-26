@@ -26,7 +26,7 @@ public class Joueur {
 	 * @param score Entier qui contiendrait le score du joueur.
 	 */
 	public Joueur(String nom, int num, int score, Plateau plateauRecapTir, Plateau plateauBateau) {
-		this.nom=nom; //nom par defaut?
+		this.nom=nom; 
 		this.num=num;
 		this.score=score;
 		this.plateauRecapTir=plateauRecapTir;
@@ -123,7 +123,6 @@ public class Joueur {
 	 * @param posY coordonnée Y de la case visée
 	 */
 	public void tirer(Joueur adversaire,int posX, int posY) {
-		adversaire.getPlateauBateau().getGrille()[posX][posY].getEstOccupe();
 		
 		if(adversaire.getPlateauBateau().getGrille()[posX][posY].getEstOccupe()) {
 			System.out.println("touché");
@@ -131,7 +130,7 @@ public class Joueur {
 			for(int i=0; i<this.bateaux.length;i++) {
 				for(int j=0; j<bateaux[i].getMesCase().length;j++) {
 					
-					// on cherche à quelle bateau appartient la case touchée et on effectue le traitement
+					// on cherche à quel bateau appartient la case touchée et on effectue le traitement
 					if(bateaux[i].getMesCase()[j].equals(adversaire.getPlateauBateau().getGrille()[posX][posY])) {
 						bateaux[i].estTouche();
 						adversaire.getPlateauBateau().getGrille()[posX][posY].estTire();
