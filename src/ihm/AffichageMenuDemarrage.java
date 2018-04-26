@@ -64,7 +64,7 @@ public class AffichageMenuDemarrage extends JPanel{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			
+			new AffichageMenuDeuxJoueurs();
 		}
 
 		@Override

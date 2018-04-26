@@ -69,6 +69,7 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements ActionListener{
 	jb_quitter.addActionListener(this);
 	
 	this.add(jl_texte, BorderLayout.NORTH);
+	
 
 }
 
