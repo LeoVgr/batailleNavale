@@ -2,11 +2,9 @@ package ihm;
 
 import javax.swing.JFrame;
 
+public class AffichageFenetreJeu extends JFrame{
 
-
-public class AffichageFenetreApplication extends JFrame  {
-	
-	public AffichageFenetreApplication(){
+	public AffichageFenetreJeu(){
 		
 		this.setDefaultLookAndFeelDecorated(false); 
 		this.setExtendedState(this.MAXIMIZED_BOTH);
@@ -14,8 +12,9 @@ public class AffichageFenetreApplication extends JFrame  {
 	
 		//this.setUndecorated(true);
 		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-		this.getContentPane().add(new AffichageMenuDemarrage());
+		this.getContentPane().add(new NouvellePartieDeuxJoueurs());
 		this.repaint();
 		this.setVisible(true);
+		
 	}
 }

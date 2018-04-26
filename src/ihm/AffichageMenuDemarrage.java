@@ -14,7 +14,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class AffichageMenuDemarrage extends JPanel{
+public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 	private JLabel jl_unJoueur;
 	private JLabel jl_deuxJoueurs;
 	private JLabel jl_quitter;
@@ -54,40 +54,41 @@ public class AffichageMenuDemarrage extends JPanel{
 		contraintesGridBag.gridy=2;
 		this.add(jl_quitter, contraintesGridBag);
 		
-		// définition des listeners
-		UnJoueurListener listenerUnJoueur = new UnJoueurListener();
+		// ajout listener
+		jl_unJoueur.addMouseListener(this);
 		
-		jl_unJoueur.addMouseListener(listenerUnJoueur);
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		this.removeAll();
+		this.add( new AffichageMenuDeuxJoueurs());
+		this.repaint();
+		this.revalidate();
 	
-	class UnJoueurListener implements MouseListener{
+		
+		
+	}
 
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			new AffichageMenuDeuxJoueurs();
-		}
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		jl_unJoueur.setForeground(new Color(175,166,164));
+	}
 
-		@Override
-		public void mouseEntered(MouseEvent arg0) {
-			jl_unJoueur.setForeground(new Color(175,166,164));
-		}
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		jl_unJoueur.setForeground(new Color(0,0,0));
+	}
 
-		@Override
-		public void mouseExited(MouseEvent arg0) {
-			jl_unJoueur.setForeground(new Color(0,0,0));
-		}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
-		@Override
-		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
