@@ -14,7 +14,7 @@ public class AffichageFenetreApplication extends JFrame {
 	
 		//this.setUndecorated(true);
 		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-		this.getContentPane().add(new AffichagePlateauBateaux());
+		this.getContentPane().add(new AffichageMenuDemarrage());
 		this.repaint();
 		this.setVisible(true);
 	}
