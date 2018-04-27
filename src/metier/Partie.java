@@ -1,13 +1,16 @@
 package metier;
 
 public class Partie {
-	private Plateau[] plateau;
+	private Joueur[] joueurs;
+	
+	
 	
 	/**
 	 * Constructeur par défaut de la classe Partie. Ce constructeur n'initialise pas les variables de l'objet.
 	 *
 	 */
 	public Partie() {
+		this.joueurs = new Joueur[2];
 		
 	}
 	
@@ -18,9 +21,7 @@ public class Partie {
 	 * 
 	 * @param plateau
 	 */
-	public Partie(Plateau[] plateau) {
-		this.plateau= new Plateau[2];
-	}
+	
 	
 	
 }

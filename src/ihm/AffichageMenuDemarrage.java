@@ -72,8 +72,8 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource() == jl_deuxJoueurs) {
-			new AffichageMenuDeuxJoueurs(fenetreApp);
-			fenetreApp.remove(this);
+			
+			fenetreApp.changePanel(this,new AffichageMenuDeuxJoueurs(fenetreApp));
 		}
 		if(e.getSource() == jl_quitter) {
 			System.exit(0);

@@ -1,8 +1,9 @@
 package ihm;
 
-import java.awt.Panel;
+
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 
@@ -19,15 +20,19 @@ public class AffichageFenetreApplication extends JFrame  {
 		this.getContentPane().add(new AffichageMenuDemarrage(this));
 		this.repaint();
 		this.setVisible(true);
+		
 	}
 	
-	public void changePanel(Panel panel) {
-		this.removeAll();
-		this.add(panel);
-		this.getContentPane().add(panel);
+	public void changePanel(JPanel ancien,JPanel panel) {
 		
+		
+		this.setContentPane(panel);
+		
+		this.remove(ancien);
 		this.repaint();
-		this.revalidate();
+		this.validate();
+	
+		
 		
 	
 		

@@ -25,12 +25,12 @@ public class Joueur {
 	 * @param num Entier qui correspond au numéro du joueur (1 ou 2 de préférence)
 	 * @param score Entier qui contiendrait le score du joueur.
 	 */
-	public Joueur(String nom, int num, int score, Plateau plateauRecapTir, Plateau plateauBateau) {
+	public Joueur(String nom, int num, int score) {
 		this.nom=nom; 
 		this.num=num;
 		this.score=score;
-		this.plateauRecapTir=plateauRecapTir;
-		this.plateauBateau=plateauBateau;
+		this.plateauRecapTir=new Plateau();
+		this.plateauBateau=new Plateau();
 		this.bateaux= new Bateau[5];
 		this.estGagnant=false;
 	}
