@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ihm.AffichageMenuDeuxJoueurs;
+import metier.Partie;
 
 
 public class NouvellePartieDeuxJoueurs extends JPanel implements ActionListener{
@@ -26,7 +27,7 @@ public class NouvellePartieDeuxJoueurs extends JPanel implements ActionListener{
 	private int compteur=0;
 	
 	
-	public NouvellePartieDeuxJoueurs() {
+	public NouvellePartieDeuxJoueurs(AffichageFenetreApplication fenetreApp, Partie partie) {
 		
 		this.setLayout(new BorderLayout());
 		
