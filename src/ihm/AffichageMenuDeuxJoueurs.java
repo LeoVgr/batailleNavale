@@ -7,11 +7,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import metier.Partie;
+
 public class AffichageMenuDeuxJoueurs extends JPanel implements ActionListener{
+	private AffichageFenetreApplication fenetreApp;
+
 	
 	
 	private JButton jb_nouvellePartie;
@@ -30,7 +35,9 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements ActionListener{
 	
 	
 	
-	public AffichageMenuDeuxJoueurs() {
+	public AffichageMenuDeuxJoueurs(AffichageFenetreApplication fenetreAppConstr) {
+	
+	this.fenetreApp=fenetreAppConstr;
 	
 	this.setLayout(new BorderLayout());
 
@@ -70,7 +77,10 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements ActionListener{
 	
 	this.add(jl_texte, BorderLayout.NORTH);
 	
-
+	fenetreApp.getContentPane().add(this);
+	fenetreApp.revalidate();
+	
+	
 }
 
 	@Override

@@ -11,19 +11,26 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import metier.Partie;
+
 public class AffichageMenuDemarrage extends JPanel implements MouseListener{
+	private AffichageFenetreApplication fenetreApp;
 	private JLabel jl_unJoueur;
 	private JLabel jl_deuxJoueurs;
 	private JLabel jl_quitter;
 	
-	public AffichageMenuDemarrage() {
+	public AffichageMenuDemarrage(AffichageFenetreApplication fenetreAppConstr) {
+		
+		// on récupère la fenetre de jeu
+		this.fenetreApp = fenetreAppConstr;
 		
 		//création des composants graphique
 		jl_unJoueur = new JLabel("1 Joueur");
-		jl_deuxJoueurs = new JLabel("2 Joueur");
+		jl_deuxJoueurs = new JLabel("2 Joueurs");
 		jl_quitter = new JLabel("Quitter");
 		
 		
@@ -55,29 +62,41 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 		this.add(jl_quitter, contraintesGridBag);
 		
 		// ajout listener
-		jl_unJoueur.addMouseListener(this);
+		jl_deuxJoueurs.addMouseListener(this);
+		jl_quitter.addMouseListener(this);
 		
 	}
+	
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		this.removeAll();
-		this.add( new AffichageMenuDeuxJoueurs());
-		this.repaint();
-		this.revalidate();
-	
-		
+		if(e.getSource() == jl_deuxJoueurs) {
+			new AffichageMenuDeuxJoueurs(fenetreApp);
+			fenetreApp.remove(this);
+		}
+		if(e.getSource() == jl_quitter) {
+			System.exit(0);
+		}
 		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		jl_unJoueur.setForeground(new Color(175,166,164));
+	public void mouseEntered(MouseEvent e) {
+		if(e.getSource() == jl_deuxJoueurs) {
+			jl_deuxJoueurs.setForeground(new Color(175,166,164));
+		}
+		if(e.getSource() == jl_quitter) {
+			jl_quitter.setForeground(new Color(175,166,164));
+		}
+		
 	}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseExited(MouseEvent e) {
+		jl_deuxJoueurs.setForeground(new Color(0,0,0));
 		jl_unJoueur.setForeground(new Color(0,0,0));
+		jl_quitter.setForeground(new Color(0,0,0));
 	}
 
 	@Override
