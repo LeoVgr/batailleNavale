@@ -44,10 +44,11 @@ public class NouvellePartieDeuxJoueurs extends JPanel implements ActionListener{
 
 		jb_valider=new JButton("Valider");
 		jb_abandon=new JButton("Abandonner");
-		
+		jp_bas.add(jb_valider);
+		jp_bas.add(jb_abandon);
 		
 		this.add(jp_tour, BorderLayout.NORTH);
-	
+		this.add(jp_bas, BorderLayout.SOUTH);
 		
 		this.repaint();
 		this.validate();
