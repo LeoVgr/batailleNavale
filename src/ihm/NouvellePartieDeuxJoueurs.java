@@ -1,3 +1,4 @@
+
 package ihm;
 
 import java.awt.BorderLayout;
@@ -62,3 +63,7 @@ public class NouvellePartieDeuxJoueurs extends JPanel implements ActionListener{
 	
 	
 }
+
+
+
+
