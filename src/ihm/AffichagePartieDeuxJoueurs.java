@@ -54,7 +54,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		plateaux = new AffichagePlateauBateaux[4];
 		
 		for(int i=0;i< plateaux.length; i++) {
-			plateaux[i] = new AffichagePlateauBateaux();
+			plateaux[i] = new AffichagePlateauBateaux(partie);
 		}
 		
 		

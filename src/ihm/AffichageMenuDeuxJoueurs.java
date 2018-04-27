@@ -132,7 +132,7 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource()==jl_nouvellePartie) {
-			fenetreApp.changePanel(this, new AffichagePartieDeuxJoueurs(fenetreApp,new Partie()));
+			fenetreApp.changePanel(this, new AffichagePartieDeuxJoueurs(fenetreApp,new Partie(jtf_nomJ1.getText(),jtf_nomJ2.getText())));
 		}
 		if(e.getSource()==jl_retour) {
 			fenetreApp.changePanel(this,new AffichageMenuDemarrage(fenetreApp));

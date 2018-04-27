@@ -33,6 +33,14 @@ public class Joueur {
 		this.plateauBateau=new Plateau();
 		this.bateaux= new Bateau[5];
 		this.estGagnant=false;
+		
+		//création des éléments de jeu
+		
+		this.plateauBateau=new Plateau(this);
+		for(int i =0; i<bateaux.length;i++) {
+			bateaux[i] = new Bateau(this.plateauBateau);
+		}
+		
 	}
 	
 	

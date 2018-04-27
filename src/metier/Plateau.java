@@ -21,13 +21,14 @@ public class Plateau {
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
 				this.grille[i][j]=new Case("Test",i,j);
+				
 			}
 		}
 		this.joueur=joueur;
 	}
 
 	public Case[][] getGrille() {
-		return grille;
+		return this.grille;
 	}
 
 	public void setGrille(Case[][] grille) {
@@ -35,7 +36,7 @@ public class Plateau {
 	}
 
 	public Joueur getJoueur() {
-		return joueur;
+		return this.joueur;
 	}
 
 	public void setJoueur(Joueur joueur) {

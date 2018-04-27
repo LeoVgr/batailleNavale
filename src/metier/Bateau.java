@@ -14,8 +14,15 @@ public class Bateau {
 	 * Contructeur par défaut de la classe Bateau. Ce constructeur construit un objet avec des variables
 	 * non initialisées.
 	 */
-	public Bateau() {
-		
+	public Bateau(Plateau plateau) {
+		this.nom="";
+		this.positionX=0;
+		this.positionY=0;
+		this.taille=1;
+		this.alignement="horizontale";
+		this.plateau= plateau;
+		this.etat = "neutre";
+		this.nbrTouche=0;
 	}
 	
 	/**
@@ -113,12 +120,14 @@ public class Bateau {
 	 */
 	public Case[] getMesCase() {
 		Case[] tabCase= new Case[this.taille];
+		
 		if(this.alignement.equals("vertical")) {
 			
 			int i =this.positionY;
 			
 			for(int j=0; j<this.taille; j++) {
-							
+					
+				
 					tabCase[j]=this.plateau.getGrille()[this.positionX][i];
 					
 					i++;

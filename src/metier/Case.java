@@ -81,7 +81,14 @@ public class Case {
 		
 		this.estTouche=true;
 	}
-
+	
+	public void estSelectionnerPlacementBateau(Bateau bateau) {
+		bateau.setPositionX(this.positionX);
+		bateau.setPositionY(this.positionY);
+		
+		
+		
+	}
 
 	@Override
 	public String toString() {
