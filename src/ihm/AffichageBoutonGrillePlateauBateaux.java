@@ -21,7 +21,7 @@ public class AffichageBoutonGrillePlateauBateaux extends JButton implements Acti
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.setBackground(new Color(0,0,0));
+	
 		
 	
 		

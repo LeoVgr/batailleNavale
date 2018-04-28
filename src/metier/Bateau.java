@@ -9,7 +9,8 @@ public class Bateau {
 	private String alignement;
 	private int nbrTouche;
 	private Plateau plateau;
-	
+	private boolean estSelectionner;
+	private boolean estPlace;
 	/**
 	 * Contructeur par défaut de la classe Bateau. Ce constructeur construit un objet avec des variables
 	 * non initialisées.
@@ -23,6 +24,8 @@ public class Bateau {
 		this.plateau= plateau;
 		this.etat = "neutre";
 		this.nbrTouche=0;
+		this.estSelectionner=false;
+		this.estPlace=false;
 	}
 	
 	/**
@@ -45,7 +48,17 @@ public class Bateau {
 		this.plateau=plateau;
 		this.etat = "neutre";
 		this.nbrTouche=0;
+		this.estSelectionner=false;
+		this.estPlace=false;
 			
+	}
+
+	public boolean isEstPlace() {
+		return estPlace;
+	}
+
+	public void setEstPlace(boolean estPlace) {
+		this.estPlace = estPlace;
 	}
 
 	public String getNom() {
@@ -86,6 +99,15 @@ public class Bateau {
 
 	public void setTaille(int taille) {
 		this.taille = taille;
+		
+	}
+
+	public boolean isEstSelectionner() {
+		return estSelectionner;
+	}
+
+	public void setEstSelectionner(boolean estSelectionner) {
+		this.estSelectionner = estSelectionner;
 	}
 
 	public String getAlignement() {
@@ -121,31 +143,37 @@ public class Bateau {
 	public Case[] getMesCase() {
 		Case[] tabCase= new Case[this.taille];
 		
-		if(this.alignement.equals("vertical")) {
-			
-			int i =this.positionY;
-			
-			for(int j=0; j<this.taille; j++) {
-					
+		try {
+			if(this.alignement.equals("vertical")) {
 				
-					tabCase[j]=this.plateau.getGrille()[this.positionX][i];
-					
-					i++;
+				int i =this.positionY;
 				
-			}
-			
-		}
-		if(this.alignement.equals("horizontal")){
-			int i =this.positionX;
-			
-			for(int j=0; j<this.taille; j++) {
-							
-					tabCase[j]=this.plateau.getGrille()[i][this.positionY];
+				for(int j=0; j<this.taille; j++) {
+						
 					
-					i++;
+						tabCase[j]=this.plateau.getGrille()[this.positionX][i];
+						
+						i++;
+					
+				}
 				
 			}
+			if(this.alignement.equals("horizontal")){
+				int i =this.positionX;
+				
+				for(int j=0; j<this.taille; j++) {
+								
+						tabCase[j]=this.plateau.getGrille()[i][this.positionY];
+						
+						i++;
+					
+				}
+			}
+			
+		}catch(java.lang.ArrayIndexOutOfBoundsException e){
+			tabCase= null;
 		}
+		
 		return tabCase;
 	}
 	
@@ -166,5 +194,6 @@ public class Bateau {
 		}
 		
 	}
+	
 	
 }

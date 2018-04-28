@@ -37,9 +37,12 @@ public class Joueur {
 		//création des éléments de jeu
 		
 		this.plateauBateau=new Plateau(this);
-		for(int i =0; i<bateaux.length;i++) {
-			bateaux[i] = new Bateau(this.plateauBateau);
-		}
+		
+		this.bateaux[0]= new SousMarin(plateauBateau);
+		this.bateaux[1]= new Croiseur(plateauBateau);
+		this.bateaux[2]= new ContreTorpilleur(plateauBateau);
+		this.bateaux[3]= new PorteAvion(plateauBateau);
+		this.bateaux[4]= new Torpilleur(plateauBateau);
 		
 	}
 	

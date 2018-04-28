@@ -20,6 +20,12 @@ import metier.Partie;
 public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener{
 	
 	private JLabel jl_tour;
+	private AffichageNomBateaux affNomBat_sousMarin;
+	private AffichageNomBateaux affNomBat_croiseur;
+	private AffichageNomBateaux affNomBat_contreTorpilleur;
+	private AffichageNomBateaux affNomBat_porteAvion;
+	private AffichageNomBateaux affNomBat_torpilleur;
+	
 	
 	private JButton jb_valider;
 	private JButton jb_abandon;
@@ -48,13 +54,21 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		
 		
 		jl_tour = new JLabel("");
+		
+		// création bateau joueur 1
+		affNomBat_sousMarin = new AffichageNomBateaux("Sous-Marin", partie,partie.getJoueurs()[0].getBateaux()[0]);
+		affNomBat_croiseur = new AffichageNomBateaux("Croiseur", partie,partie.getJoueurs()[0].getBateaux()[1]);
+		affNomBat_contreTorpilleur = new AffichageNomBateaux("Contre-torpilleur", partie,partie.getJoueurs()[0].getBateaux()[2]);
+		affNomBat_porteAvion = new AffichageNomBateaux("Porte-avion", partie,partie.getJoueurs()[0].getBateaux()[3]);
+		affNomBat_torpilleur = new AffichageNomBateaux("Torpilleur", partie,partie.getJoueurs()[0].getBateaux()[4]);
+		
 		jl_tour.setText("Au tour de "+/*jtf_nomJ1.getText()+*/" de jouer ! - Tour "+compteur);		
 		jp_tour.add(jl_tour);
 		
 		plateaux = new AffichagePlateauBateaux[4];
 		
 		for(int i=0;i< plateaux.length; i++) {
-			plateaux[i] = new AffichagePlateauBateaux(partie);
+			plateaux[i] = new AffichagePlateauBateaux(partie, fenetreApp);
 		}
 		
 		
@@ -81,16 +95,48 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		gridContraintes.gridx= 1;
 		gridContraintes.gridy=2;
 		this.add(jb_abandon, gridContraintes);
-	
+		
+		// ajout des labels des bateaux
+		gridContraintes.gridx= 5;
+		gridContraintes.gridy=0;
+		gridContraintes.insets = new Insets(0, 0, 0, 30);
+		this.add(affNomBat_sousMarin, gridContraintes);
+		
+		gridContraintes.gridx= 6;
+		gridContraintes.gridy=0;
+		gridContraintes.insets = new Insets(0, 0, 0, 30);
+		this.add(affNomBat_croiseur, gridContraintes);
+		
+		gridContraintes.gridx= 7;
+		gridContraintes.gridy=0;
+		gridContraintes.insets = new Insets(0, 0, 0, 30);
+		this.add(affNomBat_contreTorpilleur, gridContraintes);
+		
+		gridContraintes.gridx= 8;
+		gridContraintes.gridy=0;
+		gridContraintes.insets = new Insets(0, 0, 0, 30);
+		this.add(affNomBat_porteAvion, gridContraintes);
+		
+		gridContraintes.gridx= 9;
+		gridContraintes.gridy=0;
+		gridContraintes.insets = new Insets(0, 0, 0, 30);
+		this.add(affNomBat_torpilleur, gridContraintes);
+		
 		
 		this.repaint();
 		this.validate();
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public AffichageNomBateaux getAffNomBat_sousMarin() {
+		return affNomBat_sousMarin;
 	}
 	
 	
