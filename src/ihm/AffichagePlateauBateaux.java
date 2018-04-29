@@ -4,14 +4,17 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import metier.Partie;
 
-public class AffichagePlateauBateaux extends JPanel implements ActionListener{
+public class AffichagePlateauBateaux extends JPanel implements ActionListener,MouseListener{
 	private AffichageBoutonGrillePlateauBateaux[][] jb_case;
 	private Partie partie;
 	private AffichageFenetreApplication fenetre;
@@ -84,6 +87,28 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener{
 				
 				//on vérifie que le bateau ne soit pas déja placé
 				if(!this.partie.getJoueurs()[0].getBateaux()[ig].isEstPlace()) {
+					System.out.println("wesh");
+					
+					
+					// on demande quelle position le bateau doit être
+					String[] positionBateau = {"horizontal", "vertical"};
+				    JOptionPane jop = new JOptionPane();
+				    int rang = jop.showOptionDialog(null, 
+				      "Veuillez indiquer la position du bateau !",
+				      "Position bateau",
+				      JOptionPane.YES_NO_CANCEL_OPTION,
+				      JOptionPane.QUESTION_MESSAGE,
+				      null,
+				      positionBateau,
+				      positionBateau[1]);
+				    
+				    this.partie.getJoueurs()[0].getBateaux()[ig].setAlignement(positionBateau[rang]);
+					
+					
+					
+					
+					
+					
 					// test si le bateau loge ou non
 					if(this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase()==null) {
 						System.out.println("Erreur de placement");
@@ -103,6 +128,7 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener{
 						
 				}else {
 					System.out.println("bateau déja placé");
+					this.partie.getJoueurs()[0].getBateaux()[ig].setEstSelectionner(false);
 				}
 					
 					
@@ -119,6 +145,53 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener{
 		
 		
 	}
+
+
+	
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	
+
+
+	
 
 
 
