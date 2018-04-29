@@ -195,5 +195,23 @@ public class Bateau {
 		
 	}
 	
+	public void mettreMesCasesEnOccupée() {
+		for(int u=0; u < this.getMesCase().length;u++) {
+			this.getMesCase()[u].setEstOccupe(true);
+		}
+		
+	}
+	
+	public boolean chevaucheUnAutreBateau() {
+		boolean chevaucheUnAutreBateau=false;
+		
+		for(int u=0; u < this.getMesCase().length;u++) {
+			if(this.getMesCase()[u].getEstOccupe()) {
+				chevaucheUnAutreBateau=true;
+			}
+		}
+		return chevaucheUnAutreBateau;
+	}
+	
 	
 }

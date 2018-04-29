@@ -87,10 +87,13 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 				
 				//on vérifie que le bateau ne soit pas déja placé
 				if(!this.partie.getJoueurs()[0].getBateaux()[ig].isEstPlace()) {
-					System.out.println("wesh");
 					
 					
-					// on demande quelle position le bateau doit être
+					
+					
+					
+					
+					// on affecte vertical ou horizontal au bateau (son alignement)
 					String[] positionBateau = {"horizontal", "vertical"};
 				    JOptionPane jop = new JOptionPane();
 				    int rang = jop.showOptionDialog(null, 
@@ -114,16 +117,26 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 						System.out.println("Erreur de placement");
 						
 					}else {
-						for(int ip =0;ip<this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase().length;ip++) {
-							
-							
-							
+						// on test si le bateau ne chevauche pas un autre 
+						if(this.partie.getJoueurs()[0].getBateaux()[ig].chevaucheUnAutreBateau()){
+							System.out.println("chevauchement");
+						}else {
+							// on place le bateau
+							for(int ip =0;ip<this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase().length;ip++) {
+								
+								
+								
 
-							jb_case[this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase()[ip].getPositionX()]
-									[this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase()[ip].getPositionY()].setBackground(new Color(0,0,0));
+								jb_case[this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase()[ip].getPositionX()]
+										[this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase()[ip].getPositionY()].setBackground(new Color(0,0,0));
+								
+							}
+							this.partie.getJoueurs()[0].getBateaux()[ig].setEstPlace(true);
+							this.partie.getJoueurs()[0].getBateaux()[ig].setEstSelectionner(false);
+							this.partie.getJoueurs()[0].getBateaux()[ig].mettreMesCasesEnOccupée();
 						}
-						this.partie.getJoueurs()[0].getBateaux()[ig].setEstPlace(true);
-						this.partie.getJoueurs()[0].getBateaux()[ig].setEstSelectionner(false);
+						
+						
 					}
 						
 				}else {
