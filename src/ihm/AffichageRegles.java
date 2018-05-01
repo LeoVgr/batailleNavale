@@ -1,6 +1,8 @@
 package ihm;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,7 +22,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 	private JLabel jl_tirer;
 	private JLabel jl_but;
 	
-	private JButton jb_retour;
+	private JLabel jl_retour;
 	
 	private JPanel jp_centre;
 	private JPanel jp_haut;
@@ -49,8 +51,10 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			jp_centre.setLayout(new GridBagLayout());
 			
 			//création des composants graphiques
-			jb_retour = new JButton("Retour");
-			jb_retour.addMouseListener(this);
+			jl_retour=new JLabel("Retour");
+			Font font = new Font("Arial",Font.BOLD,20);
+			jl_retour.setFont(font);
+			jl_retour.addMouseListener(this);
 			
 			jl_but = new JLabel("<html>Le but de ce jeu est de tirer sur tous les bateaux du joueur adverse et de les couler.</html>");
 			
@@ -110,10 +114,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			gridContraintes.insets = new Insets(40, 0, 0, 40);
 			jp_centre.add(jl_tirer, gridContraintes);
 			
-			gridContraintes.gridx = 1;
-			gridContraintes.gridy = 5;
-			jp_centre.add(jb_retour, gridContraintes);
-			
+					
 			
 			gridContraintes.gridx=0;
 			gridContraintes.gridy=0;
@@ -121,7 +122,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			
 			gridContraintes.gridx=0;
 			gridContraintes.gridy=0;
-			jp_bas.add(jb_retour, gridContraintes);
+			jp_bas.add(jl_retour, gridContraintes);
 			
 			
 			this.add(jp_bas, BorderLayout.SOUTH);
@@ -138,7 +139,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if(e.getSource()==jb_retour) {
+			if(e.getSource()==jl_retour) {
 				fenetreApp.changePanel(this,new  AffichageMenuDemarrage(fenetreApp));
 			}
 			
@@ -147,8 +148,10 @@ public class AffichageRegles extends JPanel implements MouseListener{
 
 
 		@Override
-		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+		public void mouseEntered(MouseEvent e) {
+			if(e.getSource()==jl_retour) {
+				jl_retour.setForeground(new Color(175,166,164));
+			}
 			
 		}
 
@@ -156,7 +159,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 
 		@Override
 		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+			jl_retour.setForeground(new Color(0,0,0));
 			
 		}
 

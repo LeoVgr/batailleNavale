@@ -1,5 +1,6 @@
 package ihm;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,16 +67,34 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		}
 		
 		// le joueur actuel tir sur le plateau bateau du joueur adverse
-		this.partie.getJoueurs()[this.partie.getJoueurActuel()].tirer(this.partie.getJoueurs()[this.partie.joueurAdverse(this.partie.getJoueurActuel())], i, j);
+		
+		switch(this.partie.getJoueurs()[this.partie.getJoueurActuel()].tirer(this.partie.getJoueurs()[this.partie.joueurAdverse(this.partie.getJoueurActuel())], i, j))
+		{
+		case "touché":
+			this.jb_case[i][j].setBackground(new Color(100,0,0));
+			break;
+		
+		case "eau":
+			this.jb_case[i][j].setBackground(new Color(0,0,100));
+			break;
+		
+		case "coulé":
+			this.jb_case[i][j].setBackground(new Color(100,0,0));
+			break;
+		}
+		
+		
+		
+		
 	
 		
-	}	
+		
 	
 	
 	
 	
 	
-}
+	}
 	
-	
+}	
 
