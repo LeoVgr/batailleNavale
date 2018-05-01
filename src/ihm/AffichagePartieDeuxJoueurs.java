@@ -166,67 +166,94 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		
 		if(e.getSource()==jb_valider) {
 			
-			//on vérifie que les bateaux du joueurs soient tous placé avant de l'autoriser à passer au tour suivant
-			boolean bateauxTousPlace =true;
-			
-			for(int compteur=0; compteur< this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux().length;compteur++) {
-				if(!this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].isEstPlace()) {
-					bateauxTousPlace=false;
+			// on regarde si c'est la phase de placement des bateaux ou non
+			if(this.partie.isPhaseDePlacement()){
+				//on vérifie que les bateaux du joueurs soient tous placé avant de l'autoriser à passer au tour suivant
+				boolean bateauxTousPlace =true;
+				
+				for(int compteur=0; compteur< this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux().length;compteur++) {
+					if(!this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].isEstPlace()) {
+						bateauxTousPlace=false;
+					}
 				}
-			}
-			if(bateauxTousPlace) {
-				// si le joueur deux place tous ses bateaux est valide, alors la phase de placement des bateaux est fini
-				if(this.partie.getJoueurActuel()==1) {
-					//on termine la phase de placement
-					this.partie.setPhaseDePlacement(false);
+				if(bateauxTousPlace) {
+					// si le joueur deux place tous ses bateaux est valide, alors la phase de placement des bateaux est fini
+					if(this.partie.getJoueurActuel()==1) {
+						//on termine la phase de placement
+						this.partie.setPhaseDePlacement(false);
+						
+						//on enleve la grille de placement 
+						this.removeAll();
+						this.partie.joueurSuivant();
+						
+						//on affiche la grille de tir
+						plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
+						gridContraintes.gridx= 1;
+						gridContraintes.gridy=1;
+						gridContraintes.insets = new Insets(0, 0, 100, 0);
+						this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
+						
+						gridContraintes.gridx= 1;
+						gridContraintes.gridy=2;
+						this.add(jb_valider, gridContraintes);
+						
+						this.repaint();
+						this.revalidate();
+						
+					}else {
+						this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
+						this.partie.joueurSuivant();
+						
+						
+						// on affiche la grille des bateaux du joueurs suivant
+						plateauxBateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
+						gridContraintes.gridx= 0;
+						gridContraintes.gridy=1;
+						gridContraintes.insets = new Insets(0, 0, 100, 0);
+						this.add(plateauxBateaux[this.partie.getJoueurActuel()],gridContraintes);
+						
+						this.add(plateauxBateaux[this.partie.getJoueurActuel()]);
+						this.repaint();
+						this.revalidate();
+						bateauxTousPlace=false;
+					}
 					
-					//on enleve la grille de placement 
-					this.removeAll();
-					this.partie.joueurSuivant();
-					
-					//on affiche la grille de tir
-					plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
-					gridContraintes.gridx= 1;
-					gridContraintes.gridy=1;
-					gridContraintes.insets = new Insets(0, 0, 100, 0);
-					this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
-					
-					this.repaint();
-					this.revalidate();
 					
 				}else {
-					this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
-					this.partie.joueurSuivant();
-					
-					
-					// on affiche la grille des bateaux du joueurs suivant
-					plateauxBateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
-					gridContraintes.gridx= 0;
-					gridContraintes.gridy=1;
-					gridContraintes.insets = new Insets(0, 0, 100, 0);
-					this.add(plateauxBateaux[this.partie.getJoueurActuel()],gridContraintes);
-					
-					this.add(plateauxBateaux[this.partie.getJoueurActuel()]);
-					this.repaint();
-					this.revalidate();
-					bateauxTousPlace=false;
+					Object[] options = {"Ok"};
+					JOptionPane.showOptionDialog(this,
+						"Vous n'avez pas placé tous vos bateaux !",
+							"Attention",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.WARNING_MESSAGE,
+							null,
+							options,
+							options[0]);
+					System.out.println("Vos bateaux ne sont pas tous placés");
 				}
 				
+			
 				
 			}else {
-				Object[] options = {"Ok"};
-				JOptionPane.showOptionDialog(this,
-					"Vous n'avez pas placé tous vos bateaux !",
-						"Attention",
-						JOptionPane.YES_NO_OPTION,
-						JOptionPane.WARNING_MESSAGE,
-						null,
-						options,
-						options[0]);
-				System.out.println("Vos bateaux ne sont pas tous placés");
-			}
+				
 			
-		
+				//on enleve la grille de placement 
+				this.remove(plateauxTir[this.partie.getJoueurActuel()]);
+			
+				
+				//on passe au joueur suivant
+				this.partie.joueurSuivant();
+				
+				//on affiche la grille de tir
+				plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
+				gridContraintes.gridx= 1;
+				gridContraintes.gridy=1;
+				gridContraintes.insets = new Insets(0, 0, 100, 0);
+				this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
+				
+				this.repaint();
+				this.revalidate();
+			}
 			
 			
 			
