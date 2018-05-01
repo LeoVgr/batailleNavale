@@ -82,8 +82,7 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 		
 		// affichage des couleurs sur la grille 
 		for(int ig=0;ig<this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux().length;ig++) {
-			System.out.println(this.partie.getJoueurActuel());
-			System.out.println(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()+"");
+			
 			if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()) {
 				
 				this.partie.getJoueurs()[this.partie.getJoueurActuel()].getPlateauBateau().getGrille()[i][j].estSelectionnerPlacementBateau(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig]);

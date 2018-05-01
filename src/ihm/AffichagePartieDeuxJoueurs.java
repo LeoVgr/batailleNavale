@@ -44,7 +44,9 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	
 	private GridBagConstraints gridContraintes;
 	
-	private AffichagePlateauBateaux[] plateaux;
+	
+	private AffichagePlateauBateaux[] plateauxBateaux;
+	private AffichagePlateauTir[] plateauxTir; 
 	
 	
 	private int compteur=0;
@@ -78,10 +80,14 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		jl_tour.setText("Au tour de "+/*jtf_nomJ1.getText()+*/" de jouer ! - Tour "+compteur);		
 		jp_tour.add(jl_tour);
 		
-		plateaux = new AffichagePlateauBateaux[4];
+		plateauxBateaux = new AffichagePlateauBateaux[2];
+		plateauxTir = new AffichagePlateauTir[2];
 		
-		for(int i=0;i< plateaux.length; i++) {
-			plateaux[i] = new AffichagePlateauBateaux(partie, fenetreApp);
+		for(int i=0;i< plateauxBateaux.length; i++) {
+			plateauxBateaux[i] = new AffichagePlateauBateaux(partie, fenetreApp);
+		}
+		for(int i=0;i< plateauxTir.length; i++) {
+			plateauxTir[i] = new AffichagePlateauTir(partie, fenetreApp);
 		}
 		
 		
@@ -132,13 +138,12 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		gridContraintes.gridy=2;
 		this.add(jb_abandon, gridContraintes);
 				
-		// placement du plateau 1 Joueur
-		plateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
+		// placement des bateaux du 1er Joueurs
+		plateauxBateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
 		gridContraintes.gridx= 1;
 		gridContraintes.gridy=1;
-		
 		gridContraintes.insets = new Insets(0, 0, 100, 0);
-		this.add(plateaux[this.partie.getJoueurActuel()],gridContraintes);
+		this.add(plateauxBateaux[this.partie.getJoueurActuel()],gridContraintes);
 				
 		jb_valider.addActionListener(this);
 		this.repaint();
@@ -161,22 +166,46 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 				}
 			}
 			if(bateauxTousPlace) {
-				this.remove(plateaux[this.partie.getJoueurActuel()]);
-				this.partie.joueurSuivant();
+				// si le joueur deux place tous ses bateaux est valide, alors la phase de placement des bateaux est fini
+				if(this.partie.getJoueurActuel()==1) {
+					//on termine la phase de placement
+					this.partie.setPhaseDePlacement(false);
+					
+					//on enleve la grille de placement 
+					this.removeAll();
+					this.partie.joueurSuivant();
+					
+					//on affiche la grille de tir
+					plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
+					gridContraintes.gridx= 1;
+					gridContraintes.gridy=1;
+					gridContraintes.insets = new Insets(0, 0, 100, 0);
+					this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
+					
+					this.repaint();
+					this.revalidate();
+					
+				}else {
+					this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
+					this.partie.joueurSuivant();
+					
+					
+					// on affiche la grille des bateaux du joueurs suivant
+					plateauxBateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
+					gridContraintes.gridx= 0;
+					gridContraintes.gridy=1;
+					gridContraintes.insets = new Insets(0, 0, 100, 0);
+					this.add(plateauxBateaux[this.partie.getJoueurActuel()],gridContraintes);
+					
+					this.add(plateauxBateaux[this.partie.getJoueurActuel()]);
+					this.repaint();
+					this.revalidate();
+					bateauxTousPlace=false;
+				}
 				
 				
-				
-				plateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
-				gridContraintes.gridx= 0;
-				gridContraintes.gridy=1;
-				gridContraintes.insets = new Insets(0, 0, 100, 0);
-				this.add(plateaux[this.partie.getJoueurActuel()],gridContraintes);
-				
-				this.add(plateaux[this.partie.getJoueurActuel()]);
-				this.repaint();
-				this.revalidate();
-				bateauxTousPlace=false;
 			}else {
+				
 				System.out.println("Vos bateaux ne sont pas tous placés");
 			}
 			

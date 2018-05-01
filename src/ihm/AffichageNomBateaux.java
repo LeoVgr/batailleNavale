@@ -56,7 +56,7 @@ public class AffichageNomBateaux extends JLabel implements MouseListener{
 		monBateau[this.partie.getJoueurActuel()].setEstSelectionner(true);
 		
 
-		System.out.println(this.partie.getJoueurActuel()+" "+monBateau[this.partie.getJoueurActuel()].isEstPlace()+ monBateau[this.partie.getJoueurActuel()].isEstSelectionner());
+		
 		
 		
 		
