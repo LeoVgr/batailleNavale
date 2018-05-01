@@ -12,6 +12,7 @@ public class AffichageEcranVictoire extends JPanel{
 	private AffichageFenetreApplication fenetreApp;
 	
 	private JLabel jl_gagnant;
+	private JLabel jl_fin;
 	
 	public AffichageEcranVictoire(AffichageFenetreApplication fenetreAppConstr, String gagnant) {
 
@@ -23,9 +24,12 @@ public class AffichageEcranVictoire extends JPanel{
 		
 	
 		jl_gagnant = new JLabel(gagnant +" a gagné !");
-			jl_gagnant.setFont(font);
+		jl_gagnant.setFont(font);
 		this.add(jl_gagnant);
 	
+		jl_fin = new JLabel("Fin");
+		this.add(jl_fin);
+		
 		this.repaint();
 		this.revalidate();
 	}
