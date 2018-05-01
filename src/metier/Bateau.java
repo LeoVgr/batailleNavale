@@ -20,7 +20,7 @@ public class Bateau {
 		this.positionX=0;
 		this.positionY=0;
 		this.taille=1;
-		this.alignement="horizontale";
+		this.alignement="horizontal";
 		this.plateau= plateau;
 		this.etat = "neutre";
 		this.nbrTouche=0;
@@ -144,7 +144,7 @@ public class Bateau {
 		Case[] tabCase= new Case[this.taille];
 		
 		try {
-			if(this.alignement.equals("vertical")) {
+			if(this.alignement.equals("horizontal")) {
 				
 				int i =this.positionY;
 				
@@ -158,7 +158,7 @@ public class Bateau {
 				}
 				
 			}
-			if(this.alignement.equals("horizontal")){
+			if(this.alignement.equals("vertical")){
 				int i =this.positionX;
 				
 				for(int j=0; j<this.taille; j++) {

@@ -15,18 +15,25 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
+
 import ihm.AffichageMenuDeuxJoueurs;
+import metier.Bateau;
 import metier.Partie;
 
 
 public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener{
 	
 	private JLabel jl_tour;
+	private Partie partie;
 	private AffichageNomBateaux affNomBat_sousMarin;
 	private AffichageNomBateaux affNomBat_croiseur;
 	private AffichageNomBateaux affNomBat_contreTorpilleur;
 	private AffichageNomBateaux affNomBat_porteAvion;
 	private AffichageNomBateaux affNomBat_torpilleur;
+	
+	
+	
 	
 	
 	private JButton jb_valider;
@@ -35,6 +42,8 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	private JPanel jp_tour;
 	private JPanel jp_bas;
 	
+	private GridBagConstraints gridContraintes;
+	
 	private AffichagePlateauBateaux[] plateaux;
 	
 	
@@ -42,10 +51,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	
 	
 	public AffichagePartieDeuxJoueurs(AffichageFenetreApplication fenetreApp, Partie partie) {
-	
+		this.partie=partie;
 		// définition du layout
 		this.setLayout(new GridBagLayout());
-		GridBagConstraints gridContraintes = new GridBagConstraints();
+		this.gridContraintes = new GridBagConstraints();
 		
 		//création des composants graphiques
 		jp_tour = new JPanel();
@@ -58,11 +67,13 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		jl_tour = new JLabel("");
 		
 		// création bateau joueur 1
-		affNomBat_sousMarin = new AffichageNomBateaux("Sous-Marin", partie,partie.getJoueurs()[0].getBateaux()[0]);
-		affNomBat_croiseur = new AffichageNomBateaux("Croiseur", partie,partie.getJoueurs()[0].getBateaux()[1]);
-		affNomBat_contreTorpilleur = new AffichageNomBateaux("Contre-torpilleur", partie,partie.getJoueurs()[0].getBateaux()[2]);
-		affNomBat_porteAvion = new AffichageNomBateaux("Porte-avion", partie,partie.getJoueurs()[0].getBateaux()[3]);
-		affNomBat_torpilleur = new AffichageNomBateaux("Torpilleur", partie,partie.getJoueurs()[0].getBateaux()[4]);
+		affNomBat_sousMarin = new AffichageNomBateaux("Sous-Marin", partie,new Bateau[]{partie.getJoueurs()[0].getBateaux()[0],partie.getJoueurs()[1].getBateaux()[0]});
+		affNomBat_croiseur = new AffichageNomBateaux("Croiseur", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[1],partie.getJoueurs()[1].getBateaux()[1]});
+		affNomBat_contreTorpilleur = new AffichageNomBateaux("Contre-torpilleur", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[2],partie.getJoueurs()[1].getBateaux()[2]});
+		affNomBat_porteAvion = new AffichageNomBateaux("Porte-avion", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[3],partie.getJoueurs()[1].getBateaux()[3]});
+		affNomBat_torpilleur = new AffichageNomBateaux("Torpilleur", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[4],partie.getJoueurs()[1].getBateaux()[4]});
+		
+		
 		
 		jl_tour.setText("Au tour de "+/*jtf_nomJ1.getText()+*/" de jouer ! - Tour "+compteur);		
 		jp_tour.add(jl_tour);
@@ -74,65 +85,106 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		}
 		
 		
-		// placement du plateau 1 Joueur
-		plateaux[0].setPreferredSize(new Dimension(600,600));
-		gridContraintes.gridx= 0;
-		gridContraintes.gridy=1;
-		gridContraintes.insets = new Insets(0, 0, 100, 0);
-		this.add(plateaux[0],gridContraintes);
+		
 		
 		jb_valider=new JButton("Valider");
 		jb_abandon=new JButton("Abandonner");
 		
 		
-		// ajout des composants graphiques
-		gridContraintes.gridx= 0;
-		gridContraintes.gridy=0;
-		this.add(jp_tour, gridContraintes);
 		
-		gridContraintes.gridx= 0;
-		gridContraintes.gridy=2;
-		this.add(jb_valider, gridContraintes);
-		
-		gridContraintes.gridx= 1;
-		gridContraintes.gridy=2;
-		this.add(jb_abandon, gridContraintes);
 		
 		// ajout des labels des bateaux
-		gridContraintes.gridx= 5;
-		gridContraintes.gridy=0;
+		gridContraintes.gridx= 0;
+		gridContraintes.gridy=1;
 		gridContraintes.insets = new Insets(0, 0, 0, 30);
 		this.add(affNomBat_sousMarin, gridContraintes);
 		
-		gridContraintes.gridx= 6;
-		gridContraintes.gridy=0;
+		gridContraintes.gridx= 0;
+		gridContraintes.gridy=2;
 		gridContraintes.insets = new Insets(0, 0, 0, 30);
 		this.add(affNomBat_croiseur, gridContraintes);
 		
-		gridContraintes.gridx= 7;
-		gridContraintes.gridy=0;
+		gridContraintes.gridx= 0;
+		gridContraintes.gridy=3;
 		gridContraintes.insets = new Insets(0, 0, 0, 30);
 		this.add(affNomBat_contreTorpilleur, gridContraintes);
 		
-		gridContraintes.gridx= 8;
-		gridContraintes.gridy=0;
+		gridContraintes.gridx= 0;
+		gridContraintes.gridy=4;
 		gridContraintes.insets = new Insets(0, 0, 0, 30);
 		this.add(affNomBat_porteAvion, gridContraintes);
 		
-		gridContraintes.gridx= 9;
-		gridContraintes.gridy=0;
+		gridContraintes.gridx= 0;
+		gridContraintes.gridy=5;
 		gridContraintes.insets = new Insets(0, 0, 0, 30);
 		this.add(affNomBat_torpilleur, gridContraintes);
 		
+		// ajout des composants graphiques
+		gridContraintes.gridx= 1;
+		gridContraintes.gridy=0;
+		this.add(jp_tour, gridContraintes);
+				
+		gridContraintes.gridx= 1;
+		gridContraintes.gridy=2;
+		this.add(jb_valider, gridContraintes);
+				
+		gridContraintes.gridx= 2;
+		gridContraintes.gridy=2;
+		this.add(jb_abandon, gridContraintes);
+				
+		// placement du plateau 1 Joueur
+		plateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
+		gridContraintes.gridx= 1;
+		gridContraintes.gridy=1;
 		
+		gridContraintes.insets = new Insets(0, 0, 100, 0);
+		this.add(plateaux[this.partie.getJoueurActuel()],gridContraintes);
+				
+		jb_valider.addActionListener(this);
 		this.repaint();
 		this.validate();
 	}
-
+	
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		// passage joueur suivant et grille suivante si le bouton valider est pressé
+		
+		if(e.getSource()==jb_valider) {
+			
+			//on vérifie que les bateaux du joueurs soient tous placé avant de l'autoriser à passer au tour suivant
+			boolean bateauxTousPlace =true;
+			
+			for(int compteur=0; compteur< this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux().length;compteur++) {
+				if(!this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].isEstPlace()) {
+					bateauxTousPlace=false;
+				}
+			}
+			if(bateauxTousPlace) {
+				this.remove(plateaux[this.partie.getJoueurActuel()]);
+				this.partie.joueurSuivant();
+				
+				
+				
+				plateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
+				gridContraintes.gridx= 0;
+				gridContraintes.gridy=1;
+				gridContraintes.insets = new Insets(0, 0, 100, 0);
+				this.add(plateaux[this.partie.getJoueurActuel()],gridContraintes);
+				
+				this.add(plateaux[this.partie.getJoueurActuel()]);
+				this.repaint();
+				this.revalidate();
+				bateauxTousPlace=false;
+			}else {
+				System.out.println("Vos bateaux ne sont pas tous placés");
+			}
+			
+		
+			
+			
+			
+		}
 		
 	}
 

@@ -18,10 +18,13 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 	private AffichageBoutonGrillePlateauBateaux[][] jb_case;
 	private Partie partie;
 	private AffichageFenetreApplication fenetre;
+
+
 	
 	public AffichagePlateauBateaux(Partie partieConstr, AffichageFenetreApplication fenetre) {
 		this.partie=partieConstr;
 		this.fenetre=fenetre;
+		
 		
 		// création des composants graphiques 
 		jb_case = new AffichageBoutonGrillePlateauBateaux[10][10];
@@ -78,15 +81,16 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 		
 		
 		// affichage des couleurs sur la grille 
-		for(int ig=0;ig<this.partie.getJoueurs()[0].getBateaux().length;ig++) {
-			
-			if(this.partie.getJoueurs()[0].getBateaux()[ig].isEstSelectionner()) {
+		for(int ig=0;ig<this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux().length;ig++) {
+			System.out.println(this.partie.getJoueurActuel());
+			System.out.println(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()+"");
+			if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()) {
 				
-				this.partie.getJoueurs()[0].getPlateauBateau().getGrille()[i][j].estSelectionnerPlacementBateau(this.partie.getJoueurs()[0].getBateaux()[ig]);
+				this.partie.getJoueurs()[this.partie.getJoueurActuel()].getPlateauBateau().getGrille()[i][j].estSelectionnerPlacementBateau(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig]);
 				
 				
 				//on vérifie que le bateau ne soit pas déja placé
-				if(!this.partie.getJoueurs()[0].getBateaux()[ig].isEstPlace()) {
+				if(!this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].isEstPlace()) {
 					
 					
 					
@@ -105,7 +109,7 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 				      positionBateau,
 				      positionBateau[1]);
 				    
-				    this.partie.getJoueurs()[0].getBateaux()[ig].setAlignement(positionBateau[rang]);
+				    this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].setAlignement(positionBateau[rang]);
 					
 					
 					
@@ -113,27 +117,27 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 					
 					
 					// test si le bateau loge ou non
-					if(this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase()==null) {
+					if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCase()==null) {
 						System.out.println("Erreur de placement");
 						
 					}else {
 						// on test si le bateau ne chevauche pas un autre 
-						if(this.partie.getJoueurs()[0].getBateaux()[ig].chevaucheUnAutreBateau()){
+						if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].chevaucheUnAutreBateau()){
 							System.out.println("chevauchement");
 						}else {
 							// on place le bateau
-							for(int ip =0;ip<this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase().length;ip++) {
+							for(int ip =0;ip<this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCase().length;ip++) {
 								
 								
 								
 
-								jb_case[this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase()[ip].getPositionX()]
-										[this.partie.getJoueurs()[0].getBateaux()[ig].getMesCase()[ip].getPositionY()].setBackground(new Color(0,0,0));
+								jb_case[this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCase()[ip].getPositionX()]
+										[this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCase()[ip].getPositionY()].setBackground(new Color(0,0,0));
 								
 							}
-							this.partie.getJoueurs()[0].getBateaux()[ig].setEstPlace(true);
-							this.partie.getJoueurs()[0].getBateaux()[ig].setEstSelectionner(false);
-							this.partie.getJoueurs()[0].getBateaux()[ig].mettreMesCasesEnOccupée();
+							this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].setEstPlace(true);
+							this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].setEstSelectionner(false);
+							this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].mettreMesCasesEnOccupée();
 						}
 						
 						
@@ -141,7 +145,7 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 						
 				}else {
 					System.out.println("bateau déja placé");
-					this.partie.getJoueurs()[0].getBateaux()[ig].setEstSelectionner(false);
+					this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].setEstSelectionner(false);
 				}
 					
 					

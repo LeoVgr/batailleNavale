@@ -15,9 +15,9 @@ import metier.Partie;
 public class AffichageNomBateaux extends JLabel implements MouseListener{
 	private boolean estSelectionner;
 	private Partie partie;
-	private Bateau monBateau;
+	private Bateau[] monBateau;
 	
-	public AffichageNomBateaux(Partie partie, Bateau monBateau) {
+	public AffichageNomBateaux(Partie partie, Bateau[] monBateau) {
 		super();
 		this.partie = partie;
 		this.monBateau=monBateau;
@@ -28,7 +28,7 @@ public class AffichageNomBateaux extends JLabel implements MouseListener{
 		
 	}
 	
-	public AffichageNomBateaux(String nom, Partie partie, Bateau monBateau) {
+	public AffichageNomBateaux(String nom, Partie partie, Bateau[] monBateau) {
 		super(nom);
 		this.partie = partie;
 		this.monBateau=monBateau;
@@ -53,9 +53,10 @@ public class AffichageNomBateaux extends JLabel implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		this.estSelectionner=true;
 		
-		monBateau.setEstSelectionner(true);
-
+		monBateau[this.partie.getJoueurActuel()].setEstSelectionner(true);
 		
+
+		System.out.println(this.partie.getJoueurActuel()+" "+monBateau[this.partie.getJoueurActuel()].isEstPlace()+ monBateau[this.partie.getJoueurActuel()].isEstSelectionner());
 		
 		
 		

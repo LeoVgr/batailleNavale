@@ -1,6 +1,7 @@
 package ihm;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -21,6 +22,7 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 	private AffichageFenetreApplication fenetreApp;
 	private JLabel jl_unJoueur;
 	private JLabel jl_deuxJoueurs;
+	private JLabel jl_regles;
 	private JLabel jl_quitter;
 	
 	public AffichageMenuDemarrage(AffichageFenetreApplication fenetreAppConstr) {
@@ -31,6 +33,7 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 		//création des composants graphique
 		jl_unJoueur = new JLabel("1 Joueur");
 		jl_deuxJoueurs = new JLabel("2 Joueurs");
+		jl_regles = new JLabel("Règles");
 		jl_quitter = new JLabel("Quitter");
 		
 		
@@ -39,6 +42,7 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 		
 		jl_unJoueur.setFont(font);
 		jl_deuxJoueurs.setFont(font);
+		jl_regles.setFont(font);
 		jl_quitter.setFont(font);
 		
 		// définition du layout
@@ -59,12 +63,17 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 		
 		contraintesGridBag.gridx=0;
 		contraintesGridBag.gridy=2;
+		contraintesGridBag.insets = new Insets(0, 0, 30, 0);
+		this.add(jl_regles, contraintesGridBag);
+		
+		contraintesGridBag.gridx=0;
+		contraintesGridBag.gridy=3;
 		this.add(jl_quitter, contraintesGridBag);
 		
 		// ajout listener
 		jl_deuxJoueurs.addMouseListener(this);
 		jl_quitter.addMouseListener(this);
-		
+		jl_regles.addMouseListener(this);
 	}
 	
 	
@@ -75,6 +84,9 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 			
 			fenetreApp.changePanel(this,new AffichageMenuDeuxJoueurs(fenetreApp));
 		}
+		if(e.getSource()==jl_regles) {
+			fenetreApp.changePanel(this,new AffichageRegles(fenetreApp));
+		}
 		if(e.getSource() == jl_quitter) {
 			System.exit(0);
 		}
@@ -83,11 +95,8 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		if(e.getSource() == jl_deuxJoueurs) {
-			jl_deuxJoueurs.setForeground(new Color(175,166,164));
-		}
-		if(e.getSource() == jl_quitter) {
-			jl_quitter.setForeground(new Color(175,166,164));
+		if(e.getSource() == jl_deuxJoueurs || e.getSource() == jl_quitter || e.getSource()==jl_regles) {
+			((Component) e.getSource()).setForeground(new Color(175,166,164));
 		}
 		
 	}
@@ -97,6 +106,7 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 		jl_deuxJoueurs.setForeground(new Color(0,0,0));
 		jl_unJoueur.setForeground(new Color(0,0,0));
 		jl_quitter.setForeground(new Color(0,0,0));
+		jl_regles.setForeground(new Color(0,0,0));
 	}
 
 	@Override
