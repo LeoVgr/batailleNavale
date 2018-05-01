@@ -113,10 +113,11 @@ public class Joueur {
 	 * @param posX coordonnée X de la case visée
 	 * @param posY coordonnée Y de la case visée
 	 */
-	public void tirer(Joueur adversaire,int posX, int posY) {
+	public String tirer(Joueur adversaire,int posX, int posY) {
+		String res="";
 		
 		if(adversaire.getPlateauBateau().getGrille()[posX][posY].getEstOccupe()) {
-			System.out.println("touché");
+			res= "touché";
 			
 			
 			for(int i=0; i<adversaire.getBateaux().length;i++) {
@@ -130,10 +131,10 @@ public class Joueur {
 						adversaire.getBateaux()[i].estTouche();
 						adversaire.getPlateauBateau().getGrille()[posX][posY].estTire();
 						
-						System.out.println("oui");
 						
 						if(adversaire.getBateaux()[i].getEtat().equals("coule")) {
-							System.out.println("coulé");
+							
+							res= "coulé";
 						}
 						
 					}
@@ -141,9 +142,11 @@ public class Joueur {
 			}
 			
 		}else {
-			System.out.println("dans l'eau.");
+			res= "eau";
 		}
 		adversaire.getPlateauBateau().getGrille()[posX][posY].setEstTouche(true);
+		System.out.println(res);
+		return res;
 	}
 
 	@Override
