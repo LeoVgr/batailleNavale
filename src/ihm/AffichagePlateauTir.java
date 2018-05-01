@@ -81,6 +81,10 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		case "coulé":
 			this.jb_case[i][j].setBackground(new Color(100,0,0));
 			break;
+			
+		default :
+			System.out.println("déja tiré");
+			break;
 		}
 		
 		

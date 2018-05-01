@@ -8,6 +8,7 @@ public class Joueur {
 	private Bateau[] bateaux;
 	private Plateau plateauRecapTir;
 	private Plateau plateauBateau;
+	private boolean tirAutoriser;
 	
 	
 	/**
@@ -33,6 +34,7 @@ public class Joueur {
 		this.plateauBateau=new Plateau();
 		this.bateaux= new Bateau[5];
 		this.estGagnant=false;
+		this.tirAutoriser=true;
 		
 		//création des éléments de jeu
 		
@@ -48,6 +50,14 @@ public class Joueur {
 	
 	
 
+
+	public boolean isTirAutoriser() {
+		return tirAutoriser;
+	}
+
+	public void setTirAutoriser(boolean tirAutoriser) {
+		this.tirAutoriser = tirAutoriser;
+	}
 
 	public String getNom() {
 		return nom;
@@ -116,35 +126,42 @@ public class Joueur {
 	public String tirer(Joueur adversaire,int posX, int posY) {
 		String res="";
 		
-		if(adversaire.getPlateauBateau().getGrille()[posX][posY].getEstOccupe()) {
-			res= "touché";
-			
-			
-			for(int i=0; i<adversaire.getBateaux().length;i++) {
-				for(int j=0; j<adversaire.getBateaux()[i].getMesCase().length;j++) {
-					
-					
-					
-					// on cherche à quel bateau appartient la case touchée et on effectue le traitement
-					if(adversaire.getBateaux()[i].getMesCase()[j].equals(adversaire.getPlateauBateau().getGrille()[posX][posY])) {
-						
-						adversaire.getBateaux()[i].estTouche();
-						adversaire.getPlateauBateau().getGrille()[posX][posY].estTire();
+		//si le joueur n'a pas déja tiré
+		if(this.tirAutoriser) {
+			if(adversaire.getPlateauBateau().getGrille()[posX][posY].getEstOccupe()) {
+				res= "touché";
+				
+				
+				for(int i=0; i<adversaire.getBateaux().length;i++) {
+					for(int j=0; j<adversaire.getBateaux()[i].getMesCase().length;j++) {
 						
 						
-						if(adversaire.getBateaux()[i].getEtat().equals("coule")) {
+						
+						// on cherche à quel bateau appartient la case touchée et on effectue le traitement
+						if(adversaire.getBateaux()[i].getMesCase()[j].equals(adversaire.getPlateauBateau().getGrille()[posX][posY])) {
 							
-							res= "coulé";
+							adversaire.getBateaux()[i].estTouche();
+							adversaire.getPlateauBateau().getGrille()[posX][posY].estTire();
+							
+							
+							if(adversaire.getBateaux()[i].getEtat().equals("coule")) {
+								
+								res= "coulé";
+							}
+							
 						}
-						
 					}
 				}
+				
+			}else {
+				res= "eau";
 			}
-			
+			adversaire.getPlateauBateau().getGrille()[posX][posY].setEstTouche(true);
+			this.tirAutoriser=false;
 		}else {
-			res= "eau";
+			res="recharger";
 		}
-		adversaire.getPlateauBateau().getGrille()[posX][posY].setEstTouche(true);
+		
 		System.out.println(res);
 		return res;
 	}

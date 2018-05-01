@@ -162,6 +162,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		// passage joueur suivant et grille suivante si le bouton valider est pressé
 		
 		if(e.getSource()==jb_valider) {
@@ -240,7 +241,8 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 				//on enleve la grille de placement 
 				this.remove(plateauxTir[this.partie.getJoueurActuel()]);
 			
-				
+				// on recharge l'arme du joueur
+				this.partie.getJoueurs()[this.partie.getJoueurActuel()].setTirAutoriser(true);
 				//on passe au joueur suivant
 				this.partie.joueurSuivant();
 				
