@@ -52,6 +52,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	
 	
 	private int compteur=0;
+	private AffichageFenetreApplication fenetreApp;
 	
 	
 	public AffichagePartieDeuxJoueurs(AffichageFenetreApplication fenetreApp, Partie partie) {
@@ -155,6 +156,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		this.add(plateauxBateaux[this.partie.getJoueurActuel()],gridContraintes);
 				
 		jb_valider.addActionListener(this);
+		jb_abandon.addActionListener(this);
 		this.repaint();
 		this.validate();
 	}
@@ -163,17 +165,30 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// passage joueur suivant et grille suivante si le bouton valider est pressé
+		if (e.getSource()==jb_abandon) {
+			int answer = JOptionPane.showConfirmDialog(
+	                this,
+	                "Voulez-vous abandonner la partie ?",
+	                "Abandon",
+	                JOptionPane.YES_NO_OPTION);
+	        if(answer == JOptionPane.YES_OPTION) {
+	        	//fenetreApp.changePanel(this,new AffichageEcranVictoire(fenetreApp));
+	        }
+		}
 		
 		if(e.getSource()==jb_valider) {
 			
 			//on vérifie que les bateaux du joueurs soient tous placé avant de l'autoriser à passer au tour suivant
 			boolean bateauxTousPlace =true;
+			compteur++;
 			
 			for(int compteur=0; compteur< this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux().length;compteur++) {
 				if(!this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].isEstPlace()) {
 					bateauxTousPlace=false;
 				}
+				System.out.println(compteur);
 			}
+			
 			if(bateauxTousPlace) {
 				// si le joueur deux place tous ses bateaux est valide, alors la phase de placement des bateaux est fini
 				if(this.partie.getJoueurActuel()==1) {
@@ -183,6 +198,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					//on enleve la grille de placement 
 					this.removeAll();
 					this.partie.joueurSuivant();
+					
 					
 					//on affiche la grille de tir
 					plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
@@ -232,7 +248,6 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 			
 		}
 		
-	}
 
 
 
@@ -241,7 +256,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 	
 	
-}
+}}
 
 
 
