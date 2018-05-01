@@ -1,5 +1,6 @@
 package ihm;
 
+import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -14,11 +15,15 @@ public class AffichageEcranVictoire extends JPanel{
 	
 	public AffichageEcranVictoire(AffichageFenetreApplication fenetreAppConstr, String gagnant) {
 
-		this.setLayout(new GridBagLayout());
-
 		this.fenetreApp=fenetreAppConstr;
-		jl_gagnant = new JLabel(gagnant +" a gagné");
 		
+		this.setLayout(new GridBagLayout());
+		
+		Font font = new Font("Arial",Font.BOLD,40);
+		
+	
+		jl_gagnant = new JLabel(gagnant +" a gagné !");
+			jl_gagnant.setFont(font);
 		this.add(jl_gagnant);
 	
 		this.repaint();
