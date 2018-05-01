@@ -236,25 +236,29 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 			
 				
 			}else {
+				if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].isTirAutoriser()) {
+					System.out.println("Vous devez tirer avant de passer votre tour");
+				}else {
+					//on enleve la grille de placement 
+					this.remove(plateauxTir[this.partie.getJoueurActuel()]);
 				
+					// on recharge l'arme du joueur
+					this.partie.getJoueurs()[this.partie.getJoueurActuel()].setTirAutoriser(true);
+					//on passe au joueur suivant
+					this.partie.joueurSuivant();
+					
+					//on affiche la grille de tir
+					plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
+					gridContraintes.gridx= 1;
+					gridContraintes.gridy=1;
+					gridContraintes.insets = new Insets(0, 0, 100, 0);
+					this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
+					
+					this.repaint();
+					this.revalidate();
+				}
 			
-				//on enleve la grille de placement 
-				this.remove(plateauxTir[this.partie.getJoueurActuel()]);
-			
-				// on recharge l'arme du joueur
-				this.partie.getJoueurs()[this.partie.getJoueurActuel()].setTirAutoriser(true);
-				//on passe au joueur suivant
-				this.partie.joueurSuivant();
 				
-				//on affiche la grille de tir
-				plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
-				gridContraintes.gridx= 1;
-				gridContraintes.gridy=1;
-				gridContraintes.insets = new Insets(0, 0, 100, 0);
-				this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
-				
-				this.repaint();
-				this.revalidate();
 			}
 			
 			
