@@ -13,6 +13,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -41,6 +42,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	
 	private JPanel jp_tour;
 	private JPanel jp_bas;
+	private JPanel jp_listeBat;
 	
 	private GridBagConstraints gridContraintes;
 	
@@ -65,6 +67,8 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		jp_bas =new JPanel();
 		jp_bas.setLayout(new GridBagLayout());
 		
+		jp_listeBat =new JPanel();
+		jp_listeBat.setLayout(new GridBagLayout());
 		
 		jl_tour = new JLabel("");
 		
@@ -103,27 +107,32 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		gridContraintes.gridx= 0;
 		gridContraintes.gridy=1;
 		gridContraintes.insets = new Insets(0, 0, 0, 30);
-		this.add(affNomBat_sousMarin, gridContraintes);
+		this.add(jp_listeBat, gridContraintes);
+		
+		gridContraintes.gridx= 0;
+		gridContraintes.gridy=0;
+		gridContraintes.insets = new Insets(0, 0, 0, 30);
+		jp_listeBat.add(affNomBat_sousMarin, gridContraintes);
+		
+		gridContraintes.gridx= 0;
+		gridContraintes.gridy=1;
+		gridContraintes.insets = new Insets(0, 0, 0, 30);
+		jp_listeBat.add(affNomBat_croiseur, gridContraintes);
 		
 		gridContraintes.gridx= 0;
 		gridContraintes.gridy=2;
 		gridContraintes.insets = new Insets(0, 0, 0, 30);
-		this.add(affNomBat_croiseur, gridContraintes);
+		jp_listeBat.add(affNomBat_contreTorpilleur, gridContraintes);
 		
 		gridContraintes.gridx= 0;
 		gridContraintes.gridy=3;
 		gridContraintes.insets = new Insets(0, 0, 0, 30);
-		this.add(affNomBat_contreTorpilleur, gridContraintes);
+		jp_listeBat.add(affNomBat_porteAvion, gridContraintes);
 		
 		gridContraintes.gridx= 0;
 		gridContraintes.gridy=4;
 		gridContraintes.insets = new Insets(0, 0, 0, 30);
-		this.add(affNomBat_porteAvion, gridContraintes);
-		
-		gridContraintes.gridx= 0;
-		gridContraintes.gridy=5;
-		gridContraintes.insets = new Insets(0, 0, 0, 30);
-		this.add(affNomBat_torpilleur, gridContraintes);
+		jp_listeBat.add(affNomBat_torpilleur, gridContraintes);
 		
 		// ajout des composants graphiques
 		gridContraintes.gridx= 1;
@@ -205,7 +214,15 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 				
 				
 			}else {
-				
+				Object[] options = {"Ok"};
+				JOptionPane.showOptionDialog(this,
+					"Vous n'avez pas placé tous vos bateaux !",
+						"Attention",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.WARNING_MESSAGE,
+						null,
+						options,
+						options[0]);
 				System.out.println("Vos bateaux ne sont pas tous placés");
 			}
 			
