@@ -27,6 +27,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 	private JPanel jp_centre;
 	private JPanel jp_haut;
 	private JPanel jp_bas;
+	private JPanel jp_liste;
 	
 	private AffichageFenetreApplication fenetreApp;
 	
@@ -44,9 +45,11 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			jp_centre= new JPanel();
 			jp_haut = new JPanel();
 			jp_bas = new JPanel();
+			jp_liste = new JPanel();
 			
 			jp_haut.setLayout(new GridBagLayout());
 			jp_bas.setLayout(new GridBagLayout());
+			jp_liste.setLayout(new GridBagLayout());
 			
 			jp_centre.setLayout(new GridBagLayout());
 			
@@ -96,7 +99,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			
 			gridContraintes.gridx = 1;
 			gridContraintes.gridy = 1;
-			gridContraintes.insets = new Insets(40, 0, 0, 40);
+			gridContraintes.insets = new Insets(40, 0, 0, 10);
 			jp_centre.add(jl_but, gridContraintes);
 			
 			gridContraintes.gridx = 1;
@@ -118,17 +121,24 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			
 			gridContraintes.gridx=0;
 			gridContraintes.gridy=0;
+			gridContraintes.insets = new Insets(40, 0, 0, 0);
 			jp_haut.add(jl_titre, gridContraintes);
 			
 			gridContraintes.gridx=0;
 			gridContraintes.gridy=0;
+			gridContraintes.insets = new Insets(40, 0, 40, 0 );
 			jp_bas.add(jl_retour, gridContraintes);
 			
+			
+			gridContraintes.gridx=0;
+			gridContraintes.gridy=0;
+			gridContraintes.insets = new Insets(0, 40, 0, 0 );
+			jp_liste.add(jl_listeBat, gridContraintes);
 			
 			this.add(jp_bas, BorderLayout.SOUTH);
 			this.add(jp_haut, BorderLayout.NORTH);			
 			this.add(jp_centre, BorderLayout.CENTER);
-			this.add(jl_listeBat, BorderLayout.WEST);
+			this.add(jp_liste, BorderLayout.WEST);
 		
 		this.repaint();
 		this.revalidate();
