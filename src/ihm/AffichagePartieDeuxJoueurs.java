@@ -13,6 +13,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -205,7 +206,15 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 				
 				
 			}else {
-				
+				Object[] options = {"Ok"};
+				JOptionPane.showOptionDialog(this,
+					"Vous n'avez pas placé tous vos bateaux !",
+						"Attention",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.WARNING_MESSAGE,
+						null,
+						options,
+						options[0]);
 				System.out.println("Vos bateaux ne sont pas tous placés");
 			}
 			
