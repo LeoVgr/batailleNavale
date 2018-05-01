@@ -106,6 +106,45 @@ public class Joueur {
 	public void setBateaux(Bateau[] bateaux) {
 		this.bateaux = bateaux;
 	}
+	/**
+	 * Méthode permettant de tirer. Cette méthode vérifie si la case correspondante au coordonnées données en 
+	 * entrée est occupée ou non.
+	 * @param adversaire joueur adverse (celui sur lequel on souhaite tirer)
+	 * @param posX coordonnée X de la case visée
+	 * @param posY coordonnée Y de la case visée
+	 */
+	public void tirer(Joueur adversaire,int posX, int posY) {
+		
+		if(adversaire.getPlateauBateau().getGrille()[posX][posY].getEstOccupe()) {
+			System.out.println("touché");
+			
+			
+			for(int i=0; i<adversaire.getBateaux().length;i++) {
+				for(int j=0; j<adversaire.getBateaux()[i].getMesCase().length;j++) {
+					
+					
+					
+					// on cherche à quel bateau appartient la case touchée et on effectue le traitement
+					if(adversaire.getBateaux()[i].getMesCase()[j].equals(adversaire.getPlateauBateau().getGrille()[posX][posY])) {
+						
+						adversaire.getBateaux()[i].estTouche();
+						adversaire.getPlateauBateau().getGrille()[posX][posY].estTire();
+						
+						System.out.println("oui");
+						
+						if(adversaire.getBateaux()[i].getEtat().equals("coule")) {
+							System.out.println("coulé");
+						}
+						
+					}
+				}
+			}
+			
+		}else {
+			System.out.println("dans l'eau.");
+		}
+		adversaire.getPlateauBateau().getGrille()[posX][posY].setEstTouche(true);
+	}
 
 	@Override
 	public String toString() {
@@ -126,39 +165,7 @@ public class Joueur {
 		return builder.toString();
 	}
 	
-	/**
-	 * Méthode permettant de tirer. Cette méthode vérifie si la case correspondante au coordonnées données en 
-	 * entrée est occupée ou non.
-	 * @param adversaire joueur adverse (celui sur lequel on souhaite tirer)
-	 * @param posX coordonnée X de la case visée
-	 * @param posY coordonnée Y de la case visée
-	 */
-	public void tirer(Joueur adversaire,int posX, int posY) {
-		
-		if(adversaire.getPlateauBateau().getGrille()[posX][posY].getEstOccupe()) {
-			System.out.println("touché");
-			
-			for(int i=0; i<this.bateaux.length;i++) {
-				for(int j=0; j<bateaux[i].getMesCase().length;j++) {
-					
-					// on cherche à quel bateau appartient la case touchée et on effectue le traitement
-					if(bateaux[i].getMesCase()[j].equals(adversaire.getPlateauBateau().getGrille()[posX][posY])) {
-						bateaux[i].estTouche();
-						adversaire.getPlateauBateau().getGrille()[posX][posY].estTire();
-						
-						if(bateaux[i].getEtat().equals("coule")) {
-							System.out.println("coulé");
-						}
-						
-					}
-				}
-			}
-			
-		}else {
-			System.out.println("dans l'eau.");
-		}
-		adversaire.getPlateauBateau().getGrille()[posX][posY].setEstTouche(true);
-	}
+	
 	
 	public void addBateau(Bateau bat) {
 		int i=0;
