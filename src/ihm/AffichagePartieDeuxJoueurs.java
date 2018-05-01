@@ -24,6 +24,7 @@ import metier.Partie;
 
 
 public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener{
+	private AffichageFenetreApplication fenetreApp;
 	
 	private JLabel jl_tour;
 	private Partie partie;
@@ -52,10 +53,12 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	
 	
 	private int compteur=0;
-	private AffichageFenetreApplication fenetreApp;
+	
 	
 	
 	public AffichagePartieDeuxJoueurs(AffichageFenetreApplication fenetreApp, Partie partie) {
+		this.fenetreApp=fenetreApp;
+		
 		this.partie=partie;
 		// définition du layout
 		this.setLayout(new GridBagLayout());
@@ -172,7 +175,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	                "Abandon",
 	                JOptionPane.YES_NO_OPTION);
 	        if(answer == JOptionPane.YES_OPTION) {
-	        	//fenetreApp.changePanel(this,new AffichageEcranVictoire(fenetreApp));
+	        	int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
+	        	
+	        		String gagnant = this.partie.getJoueurs()[joueurAdverse].getNom();
+	        		fenetreApp.changePanel(this,new AffichageEcranVictoire(fenetreApp,gagnant));
 	        }
 		}
 		
@@ -239,7 +245,6 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						null,
 						options,
 						options[0]);
-				System.out.println("Vos bateaux ne sont pas tous placés");
 			}
 			
 		
