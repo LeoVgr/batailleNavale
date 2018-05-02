@@ -260,14 +260,28 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 			
 				
 			}else {
+				compteur++;
 				if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].isTirAutoriser()) {
-					System.out.println("Vous devez tirer avant de passer votre tour");
+					Object[] options = {"Ok"};
+					JOptionPane.showOptionDialog(this,
+						"Vous devez tirer !",
+							"Attention",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.WARNING_MESSAGE,
+							null,
+							options,
+							options[0]);
 				}else {
 					//on enleve la grille de placement 
 					this.remove(plateauxTir[this.partie.getJoueurActuel()]);
 				
 					// on recharge l'arme du joueur
 					this.partie.getJoueurs()[this.partie.getJoueurActuel()].setTirAutoriser(true);
+					
+					//mise a jour du tour
+					jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
+							+ "<br><br></html>");	
+					
 					//on passe au joueur suivant
 					this.partie.joueurSuivant();
 					
