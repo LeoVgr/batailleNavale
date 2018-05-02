@@ -98,7 +98,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		default :
 			Object[] options2 = {"Ok"};
 			JOptionPane.showOptionDialog(this,
-				"Vous avez déjà tiré !",
+				"Vous avez déjà tiré sur cette case ou vous avez déjà tiré !",
 					"Attention",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.WARNING_MESSAGE,

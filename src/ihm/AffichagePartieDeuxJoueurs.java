@@ -177,8 +177,9 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	        if(answer == JOptionPane.YES_OPTION) {
 	        	int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
 	        	
-	        	String gagnant = this.partie.getJoueurs()[joueurAdverse].getNom();
-	        	fenetreApp.changePanel(this,new AffichageEcranVictoire(fenetreApp,gagnant));
+	        	String gagnant= this.partie.getJoueurs()[joueurAdverse].getNom();
+	        	System.out.println(gagnant);
+	        	fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,gagnant));
 	        }
 		}
 		
