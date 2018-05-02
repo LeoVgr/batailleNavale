@@ -13,7 +13,7 @@ import metier.Partie;
 public class AffichagePlateauTir extends JPanel implements ActionListener{
 	private Partie partie;
 	private AffichageFenetreApplication fenetreApp;
-	private AffichageBoutonGrillePlateauBateaux[][] jb_case;
+	private AffichageBoutonGrillePlateauTirs[][] jb_case;
 	
 	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp) {
 		this.partie=partie;
@@ -21,10 +21,10 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		
 		
 		// création des composants graphiques 
-		jb_case = new AffichageBoutonGrillePlateauBateaux[10][10];
+		jb_case = new AffichageBoutonGrillePlateauTirs[10][10];
 		for(int compteurLettre=0; compteurLettre<10; compteurLettre ++) {
 			for(int compteurChiffre=0; compteurChiffre<10; compteurChiffre ++) {
-				jb_case[compteurLettre][compteurChiffre] = new AffichageBoutonGrillePlateauBateaux(partie,compteurLettre,compteurChiffre);
+				jb_case[compteurLettre][compteurChiffre] = new AffichageBoutonGrillePlateauTirs(partie,compteurLettre,compteurChiffre);
 			}	
 		}
 				
