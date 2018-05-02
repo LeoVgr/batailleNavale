@@ -33,7 +33,7 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 		jb_case = new AffichageBoutonGrillePlateauBateaux[10][10];
 		for(int compteurLettre=0; compteurLettre<10; compteurLettre ++) {
 			for(int compteurChiffre=0; compteurChiffre<10; compteurChiffre ++) {
-				jb_case[compteurLettre][compteurChiffre] = new AffichageBoutonGrillePlateauBateaux(partie);
+				jb_case[compteurLettre][compteurChiffre] = new AffichageBoutonGrillePlateauBateaux(partie,compteurLettre,compteurChiffre);
 			}	
 		}
 		
@@ -162,8 +162,8 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
+	
 	}
 
 
