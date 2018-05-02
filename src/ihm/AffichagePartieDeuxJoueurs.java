@@ -3,6 +3,7 @@ package ihm;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -24,18 +25,17 @@ import metier.Partie;
 
 
 public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener{
+	private AffichageFenetreApplication fenetreApp;
 	
 	private JLabel jl_tour;
+	
 	private Partie partie;
+	
 	private AffichageNomBateaux affNomBat_sousMarin;
 	private AffichageNomBateaux affNomBat_croiseur;
 	private AffichageNomBateaux affNomBat_contreTorpilleur;
 	private AffichageNomBateaux affNomBat_porteAvion;
 	private AffichageNomBateaux affNomBat_torpilleur;
-	
-	
-	
-	
 	
 	private JButton jb_valider;
 	private JButton jb_abandon;
@@ -51,8 +51,8 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	private AffichagePlateauTir[] plateauxTir; 
 	
 	
-	private int compteur=0;
-	
+	private int compteur=1;
+	private boolean finPlacement = false;
 	
 	public AffichagePartieDeuxJoueurs(AffichageFenetreApplication fenetreApp, Partie partie) {
 		this.partie=partie;
@@ -81,7 +81,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		
 		
 		
-		jl_tour.setText("Au tour de "+/*jtf_nomJ1.getText()+*/" de jouer ! - Tour "+compteur);		
+		Font font= new Font("Arial",Font.PLAIN,20);
+		jl_tour = new JLabel("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
+				+ "<br><br></html>");
+		jl_tour.setFont(font);
 		jp_tour.add(jl_tour);
 		
 		plateauxBateaux = new AffichagePlateauBateaux[2];
@@ -155,6 +158,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		this.add(plateauxBateaux[this.partie.getJoueurActuel()],gridContraintes);
 				
 		jb_valider.addActionListener(this);
+		jb_abandon.addActionListener(this);
 		this.repaint();
 		this.validate();
 	}
@@ -162,6 +166,20 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		if (e.getSource()==jb_abandon) {
+			int answer = JOptionPane.showConfirmDialog(
+	                this,
+	                "Voulez-vous abandonner la partie ?",
+	                "Abandon",
+	                JOptionPane.YES_NO_OPTION);
+	        if(answer == JOptionPane.YES_OPTION) {
+	        	int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
+	        	
+	        		String gagnant = this.partie.getJoueurs()[joueurAdverse].getNom();
+	        		fenetreApp.changePanel(this,new AffichageEcranVictoire(fenetreApp,gagnant));
+	        }
+		}
 		
 		// passage joueur suivant et grille suivante si le bouton valider est pressé
 		
@@ -178,14 +196,22 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					}
 				}
 				if(bateauxTousPlace) {
+					compteur++;
 					// si le joueur deux place tous ses bateaux est valide, alors la phase de placement des bateaux est fini
-					if(this.partie.getJoueurActuel()==1) {
+					if(finPlacement) {
 						//on termine la phase de placement
 						this.partie.setPhaseDePlacement(false);
 						
 						//on enleve la grille de placement 
-						this.removeAll();
+						this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
+						this.remove(plateauxTir[this.partie.getJoueurActuel()]);
+						this.remove(jp_listeBat);
 						this.partie.joueurSuivant();
+						
+						//mise a jour du tour
+						jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
+								+ "<br><br></html>");	
+						
 						
 						//on affiche la grille de tir
 						plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
@@ -194,21 +220,20 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						gridContraintes.insets = new Insets(0, 0, 100, 0);
 						this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
 						
-						gridContraintes.gridx= 1;
-						gridContraintes.gridy=2;
-						this.add(jb_valider, gridContraintes);
-						
 						this.repaint();
 						this.revalidate();
 						
-					}else {
+					}else {    //placement des bateaux par le joueur 2
 						this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
 						this.partie.joueurSuivant();
 						
+						//mise a jour du tour
+						jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
+								+ "<br><br></html>");
 						
 						// on affiche la grille des bateaux du joueurs suivant
 						plateauxBateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
-						gridContraintes.gridx= 0;
+						gridContraintes.gridx= 1;
 						gridContraintes.gridy=1;
 						gridContraintes.insets = new Insets(0, 0, 100, 0);
 						this.add(plateauxBateaux[this.partie.getJoueurActuel()],gridContraintes);
@@ -217,6 +242,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						this.repaint();
 						this.revalidate();
 						bateauxTousPlace=false;
+						finPlacement=false;
 					}
 					
 					
@@ -230,7 +256,6 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 							null,
 							options,
 							options[0]);
-					System.out.println("Vos bateaux ne sont pas tous placés");
 				}
 				
 			

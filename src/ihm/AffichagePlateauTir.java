@@ -83,7 +83,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 			break;
 			
 		case "gagné":
-			fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,this.partie.getJoueurs()[this.partie.getJoueurActuel()]));
+			fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()));
 			
 		default :
 			System.out.println("déja tiré");
