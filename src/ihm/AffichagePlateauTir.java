@@ -81,21 +81,30 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		
 		case "coulé":
 			this.jb_case[i][j].setBackground(new Color(100,0,0));
+			Object[] options = {"Ok"};
+			JOptionPane.showOptionDialog(this,
+				"Bateau coulé !",
+					"Attention",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.PLAIN_MESSAGE,
+					null,
+					options,
+					options[0]);
 			break;
 			
 		case "gagné":
 			fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()));
 			
 		default :
-			Object[] options = {"Ok"};
+			Object[] options2 = {"Ok"};
 			JOptionPane.showOptionDialog(this,
 				"Vous avez déjà tiré !",
 					"Attention",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.WARNING_MESSAGE,
 					null,
-					options,
-					options[0]);
+					options2,
+					options2[0]);
 
 			break;
 		}

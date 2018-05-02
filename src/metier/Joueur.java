@@ -128,18 +128,16 @@ public class Joueur {
 		
 		//si le joueur n'a pas déja tiré
 		if(this.tirAutoriser) {
-			if(adversaire.getPlateauBateau().getGrille()[posX][posY].getEstOccupe()) {
-				res= "touché";
-				
-				
-				for(int i=0; i<adversaire.getBateaux().length;i++) {
-					for(int j=0; j<adversaire.getBateaux()[i].getMesCase().length;j++) {
-						
-						
-						
-						// on cherche à quel bateau appartient la case touchée et on effectue le traitement
-						if(adversaire.getBateaux()[i].getMesCase()[j].equals(adversaire.getPlateauBateau().getGrille()[posX][posY])) {
-						
+			if(adversaire.getPlateauBateau().getGrille()[posX][posY].isEstTouche()) {
+				System.out.println("T'as déja bougnoule");
+			}else {
+				if(adversaire.getPlateauBateau().getGrille()[posX][posY].getEstOccupe()) {
+					res= "touché";
+					
+					
+					for(int i=0; i<adversaire.getBateaux().length;i++) {
+						for(int j=0; j<adversaire.getBateaux()[i].getMesCase().length;j++) {
+							
 							
 							
 							// on cherche à quel bateau appartient la case touchée et on effectue le traitement
