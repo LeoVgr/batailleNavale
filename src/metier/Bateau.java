@@ -212,6 +212,14 @@ public class Bateau {
 		}
 		return chevaucheUnAutreBateau;
 	}
+	public void tournerBateau() {
+		if (this.alignement.equals("vertical")){
+			this.setAlignement("horizontal");
+		}else {
+			this.setAlignement("vertical");
+		}
+				
+	}
 	
 	
 }

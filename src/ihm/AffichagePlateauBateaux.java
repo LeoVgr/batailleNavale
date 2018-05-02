@@ -103,29 +103,6 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 				if(!this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].isEstPlace()) {
 					
 					
-					
-					
-					
-					
-					// on affecte vertical ou horizontal au bateau (son alignement)
-					String[] positionBateau = {"horizontal", "vertical"};
-				    JOptionPane jop = new JOptionPane();
-				    int rang = jop.showOptionDialog(null, 
-				      "Veuillez indiquer la position du bateau !",
-				      "Position bateau",
-				      JOptionPane.YES_NO_CANCEL_OPTION,
-				      JOptionPane.QUESTION_MESSAGE,
-				      null,
-				      positionBateau,
-				      positionBateau[1]);
-				    
-				    this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].setAlignement(positionBateau[rang]);
-					
-					
-					
-					
-					
-					
 					// test si le bateau loge ou non
 					if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCase()==null) {
 						System.out.println("Erreur de placement");
