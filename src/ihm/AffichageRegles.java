@@ -88,7 +88,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			jl_placement = new JLabel("<html><h2><center>Placement des bateaux</center></h2>"
 					+ "<br>"
 					+ "<br>Pour placer un bateau, il faut cliquer sur le nom du bateau souhaité, puis cliquer sur une case de la grille. "
-					+ "Vous pourrez alors choisir l'orientation du bateau."
+					+ "<br>Il se placera verticalement. Si vous voulez le placer horizontalement, il faut appuyer sur <b>'R'</b> une fois le bateau sélectionné."
 					+ "<br>"
 					+ "S'il n'y a pas la place suffisante, un message d'erreur apparaîtra. Vous pourrez ensuite le replacer."
 					+ "<br>Le bateau que vous avez sélectionné s'affiche en <font color=green><b>vert</b></font>."
