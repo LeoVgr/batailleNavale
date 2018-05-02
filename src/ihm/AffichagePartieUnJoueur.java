@@ -12,12 +12,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-
+import javax.swing.KeyStroke;
 
 import ihm.AffichageMenuDeuxJoueurs;
 import metier.Bateau;
@@ -87,7 +91,7 @@ public class AffichagePartieUnJoueur extends JPanel implements ActionListener{
 		jl_tour.setFont(font);
 		jp_tour.add(jl_tour);
 		
-		plateauxBateaux = new AffichagePlateauBateaux[2];
+		plateauxBateaux = new AffichagePlateauBateaux[1];
 		plateauxTir = new AffichagePlateauTir[2];
 		
 		for(int i=0;i< plateauxBateaux.length; i++) {
@@ -161,6 +165,28 @@ public class AffichagePartieUnJoueur extends JPanel implements ActionListener{
 		jb_abandon.addActionListener(this);
 		this.repaint();
 		this.validate();
+
+		InputMap imap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap amap = this.getActionMap();
+        Action tournerBat = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            	
+            	for(int ig=0;ig<partie.getJoueurs()[partie.getJoueurActuel()].getBateaux().length;ig++) {
+
+        			if(partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()) {
+        				partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].tournerBateau();
+        			}
+            	}
+        			
+            	
+            
+            }
+        };
+
+        KeyStroke k = KeyStroke.getKeyStroke(KeyEvent.VK_R, 0);
+        imap.put(k, "tourner");
+        amap.put("tourner", tournerBat);
+        this.requestFocus();
 	}
 	
 

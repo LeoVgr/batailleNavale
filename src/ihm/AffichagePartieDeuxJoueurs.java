@@ -320,16 +320,13 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					gridContraintes.insets = new Insets(0, 0, 100, 0);
 					this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
 					
-					/*if (compteur%2==0)
-					{
-					
-					
+					/*
 					gridContraintes.gridx= 2;
 					gridContraintes.gridy=1;
 					gridContraintes.insets = new Insets(0, 20, 100, 0);
 					this.add(plateauxTir[this.partie.getJoueurActuel()+1],gridContraintes);
 					
-					}*/
+					*/
 					
 					this.repaint();
 					this.revalidate();
