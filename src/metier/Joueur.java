@@ -147,6 +147,9 @@ public class Joueur {
 							if(adversaire.getBateaux()[i].getEtat().equals("coule")) {
 								
 								res= "coulé";
+								if(adversaire.sontTousCoule()) {
+									res="gagné";
+								}
 							}
 							
 						}
@@ -206,6 +209,17 @@ public class Joueur {
 				i++;
 			
 		}
+		
+	}
+	public boolean sontTousCoule() {
+		boolean res =true;
+		
+		for(int i=0; i<this.getBateaux().length;i++) {
+			if(!this.getBateaux()[i].getEtat().equals("coule")) {
+				res=false;
+			}
+		}
+		return res;
 		
 	}
 	
