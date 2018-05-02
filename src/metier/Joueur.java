@@ -139,26 +139,33 @@ public class Joueur {
 						
 						// on cherche à quel bateau appartient la case touchée et on effectue le traitement
 						if(adversaire.getBateaux()[i].getMesCase()[j].equals(adversaire.getPlateauBateau().getGrille()[posX][posY])) {
-							
-							adversaire.getBateaux()[i].estTouche();
-							adversaire.getPlateauBateau().getGrille()[posX][posY].estTire();
+						
 							
 							
-							if(adversaire.getBateaux()[i].getEtat().equals("coule")) {
+							// on cherche à quel bateau appartient la case touchée et on effectue le traitement
+							if(adversaire.getBateaux()[i].getMesCase()[j].equals(adversaire.getPlateauBateau().getGrille()[posX][posY])) {
 								
-								res= "coulé";
-								if(adversaire.sontTousCoule()) {
-									res="gagné";
+								adversaire.getBateaux()[i].estTouche();
+								adversaire.getPlateauBateau().getGrille()[posX][posY].estTire();
+								
+								
+								if(adversaire.getBateaux()[i].getEtat().equals("coule")) {
+									
+									res= "coulé";
+									if(adversaire.sontTousCoule()) {
+										res="gagné";
+									}
 								}
+								
 							}
-							
 						}
 					}
+					
+				}else {
+					res= "eau";
 				}
-				
-			}else {
-				res= "eau";
 			}
+		
 			adversaire.getPlateauBateau().getGrille()[posX][posY].setEstTouche(true);
 			this.tirAutoriser=false;
 		}else {

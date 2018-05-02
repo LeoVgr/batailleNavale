@@ -96,6 +96,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 					null,
 					options,
 					options[0]);
+
 			break;
 		}
 		
