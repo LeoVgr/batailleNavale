@@ -220,6 +220,42 @@ public class Bateau {
 		}
 				
 	}
+	public Case[] getMesCasesPositionnement(int posX, int posY) {
+	Case[] tabCase= new Case[this.taille];
+		
+		try {
+			if(this.alignement.equals("horizontal")) {
+				
+				int i =posY;
+				
+				for(int j=0; j<this.taille; j++) {
+						
+					
+						tabCase[j]=this.plateau.getGrille()[posX][i];
+						
+						i++;
+					
+				}
+				
+			}
+			if(this.alignement.equals("vertical")){
+				int i =posX;
+				
+				for(int j=0; j<this.taille; j++) {
+								
+						tabCase[j]=this.plateau.getGrille()[i][posY];
+						
+						i++;
+					
+				}
+			}
+			
+		}catch(java.lang.ArrayIndexOutOfBoundsException e){
+			tabCase= null;
+		}
+		
+		return tabCase;
+	}
 	
 	
 }
