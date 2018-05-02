@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import metier.Partie;
@@ -83,10 +84,19 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 			break;
 			
 		case "gagné":
-			fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,this.partie.getJoueurs()[this.partie.getJoueurActuel()]));
+			fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()));
 			
 		default :
-			
+			Object[] options = {"Ok"};
+			JOptionPane.showOptionDialog(this,
+				"Vous avez déjà tiré !",
+					"Attention",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.WARNING_MESSAGE,
+					null,
+					options,
+					options[0]);
+
 			break;
 		}
 		

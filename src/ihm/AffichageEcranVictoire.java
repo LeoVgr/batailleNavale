@@ -21,7 +21,7 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 	
 	private GridBagConstraints gridContraintes;
 	
-	public AffichageEcranVictoire(AffichageFenetreApplication fenetreAppConstr, Joueur joueur) {
+	public AffichageEcranVictoire(AffichageFenetreApplication fenetreAppConstr, String gagnant) {
 
 		this.fenetreApp=fenetreAppConstr;
 		
@@ -30,7 +30,7 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 		
 		Font font = new Font("Arial",Font.BOLD,40);
 		
-		jl_gagnant = new JLabel(joueur.getNom() +" a gagné !");
+		jl_gagnant = new JLabel( gagnant +" a gagné !");
 		jl_gagnant.setFont(font);
 		
 		jl_fin = new JLabel("Fin");

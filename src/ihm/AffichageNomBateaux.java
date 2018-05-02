@@ -52,20 +52,15 @@ public class AffichageNomBateaux extends JLabel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		this.estSelectionner=true;
-		
+		if(!monBateau[this.partie.getJoueurActuel()].isEstPlace()) {
 		monBateau[this.partie.getJoueurActuel()].setEstSelectionner(true);
 		this.setForeground((new Color(34,145,21)));
-
-		
-		
-		
-		
-		
-		
+		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		if(!monBateau[this.partie.getJoueurActuel()].isEstPlace()) 
 		this.setForeground((new Color(175,166,164)));
 		
 		
@@ -73,7 +68,7 @@ public class AffichageNomBateaux extends JLabel implements MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		if(monBateau[this.partie.getJoueurActuel()].isEstSelectionner()==true) {
+		if(monBateau[this.partie.getJoueurActuel()].isEstSelectionner()) {
 		this.setForeground((new Color(34,145,21)));
 		}
 		else if(monBateau[this.partie.getJoueurActuel()].isEstPlace()) {
