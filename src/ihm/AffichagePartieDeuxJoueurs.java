@@ -238,11 +238,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						gridContraintes.insets = new Insets(0, 0, 100, 0);
 						this.add(plateauxBateaux[this.partie.getJoueurActuel()],gridContraintes);
 						
-						this.add(plateauxBateaux[this.partie.getJoueurActuel()]);
 						this.repaint();
 						this.revalidate();
 						bateauxTousPlace=false;
-						finPlacement=false;
+						finPlacement=true;
 					}
 					
 					
