@@ -223,7 +223,10 @@ public class AffichagePartieUnJoueur extends JPanel implements ActionListener{
 						this.repaint();
 						this.revalidate();
 						
-					}else {    //placement des bateaux par le joueur 2
+					}else {    
+						
+						//placement des bateaux par le joueur 2
+						
 						this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
 						this.partie.joueurSuivant();
 						
