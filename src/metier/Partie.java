@@ -15,11 +15,20 @@ public class Partie {
 		this.joueurActuel=0;
 		joueurs[0]=new Joueur(nomJ1,1,0);
 		joueurs[1]=new Joueur(nomJ2,2,0);
-		this.phaseDePlacement=true;
-		
+		this.phaseDePlacement=true;	
 	}
 
-
+	/**
+	 * Constructeur pour le mode 1 joueur
+	 *
+	 */
+	public Partie(String nomJ1) {
+		this.joueurs = new Joueur[2];
+		this.joueurActuel=0;
+		joueurs[0]=new Joueur(nomJ1,1,0);
+		joueurs[1]=new Ordi();
+		this.phaseDePlacement=true;	
+	}
 
 	public boolean isPhaseDePlacement() {
 		return phaseDePlacement;
