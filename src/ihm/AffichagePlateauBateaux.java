@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -18,7 +19,9 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 	private AffichageBoutonGrillePlateauBateaux[][] jb_case;
 	private Partie partie;
 	private AffichageFenetreApplication fenetre;
-
+	private JLabel[] nomPosLettre;
+	
+	
 
 	
 	public AffichagePlateauBateaux(Partie partieConstr, AffichageFenetreApplication fenetre) {
@@ -34,8 +37,16 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 			}	
 		}
 		
+		
+		String[] lettre = new String[] {"A","B","C","D","E","F","G","H","I","J"};
+		nomPosLettre = new JLabel[10];
+		for(int i =0; i<nomPosLettre.length;i++) {
+			nomPosLettre[i]=new JLabel(lettre[i]);
+			this.add(nomPosLettre[i]);
+		}
+		
 		// définition des layout
-		this.setLayout(new GridLayout(10,10));
+		this.setLayout(new GridLayout(11,11));
 		
 		// ajout des composants 
 		for(int compteurLettreb=0; compteurLettreb<10; compteurLettreb ++) {

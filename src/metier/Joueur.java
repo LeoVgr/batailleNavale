@@ -162,10 +162,11 @@ public class Joueur {
 				}else {
 					res= "eau";
 				}
+				adversaire.getPlateauBateau().getGrille()[posX][posY].setEstTouche(true);
+				this.tirAutoriser=false;
 			}
 		
-			adversaire.getPlateauBateau().getGrille()[posX][posY].setEstTouche(true);
-			this.tirAutoriser=false;
+			
 		}else {
 			res="recharger";
 		}
