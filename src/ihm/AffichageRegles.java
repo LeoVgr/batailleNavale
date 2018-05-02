@@ -27,6 +27,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 	private JPanel jp_centre;
 	private JPanel jp_haut;
 	private JPanel jp_bas;
+	private JPanel jp_listeBat;
 	
 	private AffichageFenetreApplication fenetreApp;
 	
@@ -44,19 +45,24 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			jp_centre= new JPanel();
 			jp_haut = new JPanel();
 			jp_bas = new JPanel();
+			jp_listeBat = new JPanel();
 			
 			jp_haut.setLayout(new GridBagLayout());
 			jp_bas.setLayout(new GridBagLayout());
-			
+			jp_listeBat.setLayout(new GridBagLayout());
 			jp_centre.setLayout(new GridBagLayout());
 			
 			//création des composants graphiques
 			jl_retour=new JLabel("Retour");
-			Font font = new Font("Arial",Font.BOLD,20);
+			Font font = new Font("Arial",Font.BOLD,30);
 			jl_retour.setFont(font);
 			jl_retour.addMouseListener(this);
 			
-			jl_but = new JLabel("<html>Le but de ce jeu est de tirer sur tous les bateaux du joueur adverse et de les couler.</html>");
+			
+			Font font2 = new Font("Arial",Font.PLAIN,15);
+			
+			jl_but = new JLabel("<html><center>Le but de ce jeu est de tirer sur tous les bateaux du joueur adverse et de les couler.</center></html>");
+			jl_but.setFont(font2);
 			
 			jl_listeBat = new JLabel("<html><h2>Liste des bateaux</h2>"
 					+ "<br>"
@@ -69,6 +75,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 					+ "<br>- sous-marin : 3 cases"
 					+ "<br>"
 					+ "<br>- torpilleur : 2 cases</html>");
+			jl_listeBat.setFont(font2);
 			
 			jl_phases = new JLabel("<html>Une partie se déroule en 2 phases:"
 					+ "<br>"
@@ -76,42 +83,48 @@ public class AffichageRegles extends JPanel implements MouseListener{
 					+"<br> - une phase où chaque joueur va essayer de tirer sur les bateaux du joueur adverse."
 					+"<br>"
 					+"<br>Pour finir le tour, il faut cliquer sur 'valider'.</html>");
+			jl_phases.setFont(font2);
 			
 			jl_placement = new JLabel("<html><h2><center>Placement des bateaux</center></h2>"
 					+ "<br>"
 					+ "<br>Pour placer un bateau, il faut cliquer sur le nom du bateau souhaité, puis cliquer sur une case de la grille. "
 					+ "Vous pourrez alors choisir l'orientation du bateau."
 					+ "<br>"
-					+ "S'il n'y a pas la place suffisante, un message d'erreur apparaîtra. Vous pourrez ensuite le replacer.</html>");
+					+ "S'il n'y a pas la place suffisante, un message d'erreur apparaîtra. Vous pourrez ensuite le replacer."
+					+ "<br>Le bateau que vous avez sélectionné s'affiche en <font color=green><b>vert</b></font>."
+					+ "S'il a déjà été placé, le survol de la souris le mettra en <font color=red><b>rouge</b></font>.</html>");
+			jl_placement.setFont(font2);
 			
-			jl_titre = new JLabel("<html><h1>Règles</h1></html>");
+			jl_titre = new JLabel("<html>Règles</html>");
+			Font font3 = new Font("Arial",Font.BOLD,50);
+			jl_titre.setFont(font3);
 			
 			jl_tirer = new JLabel("<html><h2><center>Tirer</center></h2>"
 					+ "<br>Pour tirer, il suffit de cliquer sur une case de la grille. "
 					+ "Un message s'affichera, indiquant si vous avez ou non touché un bateau adverse.</html>");
-			
+			jl_tirer.setFont(font2);
 			
 			// définition des contraintes et ajouts des composants
 			GridBagConstraints gridContraintes = new GridBagConstraints();
 			
 			gridContraintes.gridx = 1;
 			gridContraintes.gridy = 1;
-			gridContraintes.insets = new Insets(40, 0, 0, 40);
+			gridContraintes.insets = new Insets(40, 0, 0, 0);
 			jp_centre.add(jl_but, gridContraintes);
 			
 			gridContraintes.gridx = 1;
 			gridContraintes.gridy = 2;
-			gridContraintes.insets = new Insets(40, 0, 0, 40);
+			gridContraintes.insets = new Insets(40, 0, 0, 0);
 			jp_centre.add(jl_phases, gridContraintes);
 			
 			gridContraintes.gridx = 1;
 			gridContraintes.gridy = 3;
-			gridContraintes.insets = new Insets(40, 0, 0, 40);
+			gridContraintes.insets = new Insets(40, 0, 0, 0);
 			jp_centre.add(jl_placement, gridContraintes);
 			
 			gridContraintes.gridx = 1;
 			gridContraintes.gridy = 4;
-			gridContraintes.insets = new Insets(40, 0, 0, 40);
+			gridContraintes.insets = new Insets(40, 0, 0, 0);
 			jp_centre.add(jl_tirer, gridContraintes);
 			
 					
@@ -122,13 +135,19 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			
 			gridContraintes.gridx=0;
 			gridContraintes.gridy=0;
+			gridContraintes.insets = new Insets(40, 0, 40, 0);
 			jp_bas.add(jl_retour, gridContraintes);
+			
+			gridContraintes.gridx=0;
+			gridContraintes.gridy=0;
+			gridContraintes.insets = new Insets(0, 30, 0, 0);
+			jp_listeBat.add(jl_listeBat, gridContraintes);
 			
 			
 			this.add(jp_bas, BorderLayout.SOUTH);
 			this.add(jp_haut, BorderLayout.NORTH);			
 			this.add(jp_centre, BorderLayout.CENTER);
-			this.add(jl_listeBat, BorderLayout.WEST);
+			this.add(jp_listeBat, BorderLayout.WEST);
 		
 		this.repaint();
 		this.revalidate();
