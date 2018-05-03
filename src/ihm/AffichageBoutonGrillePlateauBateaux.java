@@ -77,7 +77,6 @@ public class AffichageBoutonGrillePlateauBateaux extends JButton implements Mous
 							panel.getJb_case()[this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(posX, posY)[compteur].getPositionX()]
 									[this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(posX, posY)[compteur].getPositionY()]
 											.setBackground(new Color(0,0,0));
-							System.out.println("couleur");
 							
 						}else {
 							panel.getJb_case()[this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(posX, posY)[compteur].getPositionX()]

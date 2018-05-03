@@ -170,12 +170,19 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		InputMap imap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap amap = this.getActionMap();
         Action tournerBat = new AbstractAction() {
+        	
         public void actionPerformed(ActionEvent e) {
             	
             	for(int ig=0;ig<partie.getJoueurs()[partie.getJoueurActuel()].getBateaux().length;ig++) {
 
         			if(partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()) {
+        				
+        				
+        				
         				partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].tournerBateau();
+        				
+        				
+        				
         			}
             	}
         			
