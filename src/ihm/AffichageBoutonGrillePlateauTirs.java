@@ -2,6 +2,7 @@ package ihm;
 
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import metier.Partie;
@@ -15,10 +16,10 @@ public class AffichageBoutonGrillePlateauTirs extends JButton{
 		this.partie=partieConstr;
 		this.posX=posX;
 		this.posY=posY;
-	
 		
 		this.setBackground(new Color(175,175,191));
 		
 		
 	}
+	
 }

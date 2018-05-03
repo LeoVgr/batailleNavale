@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -102,15 +103,21 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		}
 
 		// le joueur actuel tir sur le plateau bateau du joueur adverse
-
+		ImageIcon image = new ImageIcon(this.getClass().getResource(""));
 		switch(this.partie.getJoueurs()[this.partie.getJoueurActuel()].tirer(this.partie.getJoueurs()[this.partie.joueurAdverse(this.partie.getJoueurActuel())], i, j))
 		{
+		
 		case "touché":
-			this.jb_case[i][j].setBackground(new Color(100,0,0));
+			image = new ImageIcon(this.getClass().getResource("/boom.jpg"));
+			this.jb_case[i][j].setIcon(image);
+			//this.jb_case[i][j].setBackground(new Color(100,0,0));
 			break;
 
 		case "eau":
-			this.jb_case[i][j].setBackground(new Color(0,0,100));
+			image = new ImageIcon(this.getClass().getResource("/eau.jpg"));
+			System.out.println(image == null);
+			//this.jb_case[i][j].setBackground(new Color(0,0,100));
+			this.jb_case[i][j].setIcon(image);
 			break;
 
 		case "coulé":

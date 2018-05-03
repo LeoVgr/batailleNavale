@@ -187,15 +187,12 @@ public class AffichagePartieUnJoueur extends JPanel implements ActionListener{
 									if(partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)!=null) {
 										for(int compteur=0;compteur<partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY).length;compteur++) {
 
-
-
 											if(partie.getJoueurs()[partie.getJoueurActuel()].getPlateauBateau().getGrille()[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionX()]
 													[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionY()].getEstOccupe()) {
 
 												plateauxBateaux[partie.getJoueurActuel()].getJb_case()[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionX()]
 														[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionY()]
 																.setBackground(new Color(0,0,0));
-
 											}else {
 												plateauxBateaux[partie.getJoueurActuel()].getJb_case()[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionX()]
 														[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionY()]
