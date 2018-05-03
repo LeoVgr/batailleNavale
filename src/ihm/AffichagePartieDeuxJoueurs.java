@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ActionMap;
+import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -80,9 +81,13 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		jp_listeBat.setLayout(new GridBagLayout());
 
 		jl_tour = new JLabel("");
-
+		
+		ImageIcon image = new ImageIcon(this.getClass().getResource(""));
+		
 		// création bateau joueur 1
-		affNomBat_sousMarin = new AffichageNomBateaux("Sous-Marin", partie,new Bateau[]{partie.getJoueurs()[0].getBateaux()[0],partie.getJoueurs()[1].getBateaux()[0]});
+		affNomBat_sousMarin = new AffichageNomBateaux("Sous-marin", partie,new Bateau[]{partie.getJoueurs()[0].getBateaux()[0],partie.getJoueurs()[1].getBateaux()[0]});
+		image = new ImageIcon(this.getClass().getResource("/sous-marin.jpg"));
+		affNomBat_sousMarin.setIcon(image);
 		affNomBat_croiseur = new AffichageNomBateaux("Croiseur", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[1],partie.getJoueurs()[1].getBateaux()[1]});
 		affNomBat_contreTorpilleur = new AffichageNomBateaux("Contre-torpilleur", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[2],partie.getJoueurs()[1].getBateaux()[2]});
 		affNomBat_porteAvion = new AffichageNomBateaux("Porte-avion", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[3],partie.getJoueurs()[1].getBateaux()[3]});
@@ -315,7 +320,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						
 						int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
 	  
-						plateauxTir[joueurAdverse].setPreferredSize(new Dimension(500,500));
+						plateauxTir[joueurAdverse].setPreferredSize(new Dimension(550,550));
 						gridContraintes.gridx= 2;
 						gridContraintes.gridy=1;
 						gridContraintes.insets = new Insets(0, 20, 100, 0);
@@ -327,7 +332,14 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					}else {    //placement des bateaux par le joueur 2
 						this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
 						this.partie.joueurSuivant();
-
+						
+						// remise a 0 des indications/couleurs
+						affNomBat_sousMarin.setForeground((new Color(0,0,0)));
+						affNomBat_croiseur.setForeground((new Color(0,0,0)));
+						affNomBat_contreTorpilleur.setForeground((new Color(0,0,0)));
+						affNomBat_porteAvion.setForeground((new Color(0,0,0)));
+						affNomBat_torpilleur.setForeground((new Color(0,0,0)));
+						
 						//mise a jour du tour
 						jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
 								+ "<br><br></html>");
@@ -405,7 +417,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
 
 		        	
-					plateauxTir[joueurAdverse].setPreferredSize(new Dimension(500,500));
+					plateauxTir[joueurAdverse].setPreferredSize(new Dimension(550,550));
 					gridContraintes.gridx= 2;
 					gridContraintes.gridy=1;
 					gridContraintes.insets = new Insets(0, 20, 100, 0);
