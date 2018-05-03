@@ -5,10 +5,17 @@ import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 import metier.Partie;
 
@@ -17,6 +24,7 @@ public class AffichageBoutonGrillePlateauBateaux extends JButton implements Mous
 	private int posX;
 	private int posY;
 	private AffichagePlateauBateaux panel;
+	private boolean sourisDessus;
 	
 	
 	public AffichageBoutonGrillePlateauBateaux(Partie partieConstr,int posX,int posY, AffichagePlateauBateaux panel) {
@@ -24,9 +32,16 @@ public class AffichageBoutonGrillePlateauBateaux extends JButton implements Mous
 		this.posX=posX;
 		this.posY=posY;
 		this.panel=panel;
+		this.sourisDessus=false;
 	
 		this.addMouseListener(this);
 		this.setBackground(new Color(175,175,191));
+		
+	
+		
+	}
+	public boolean isSourisDessus() {
+		return sourisDessus;
 	}
 
 
@@ -39,7 +54,7 @@ public class AffichageBoutonGrillePlateauBateaux extends JButton implements Mous
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		
-		
+		this.sourisDessus=true;
 		
 		for(int ig=0;ig<this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux().length;ig++) {
 			if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()) {
@@ -58,14 +73,18 @@ public class AffichageBoutonGrillePlateauBateaux extends JButton implements Mous
 				}
 			}
 		}
-			
+		
+		
 			
 		
 	}
 
+	
+
+
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		
+		this.sourisDessus=false;
 		for(int ig=0;ig<this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux().length;ig++) {
 			if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()) {
 				if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(posX, posY)!=null) {
@@ -74,6 +93,7 @@ public class AffichageBoutonGrillePlateauBateaux extends JButton implements Mous
 						
 						if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getPlateauBateau().getGrille()[this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(posX, posY)[compteur].getPositionX()]
 								[this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(posX, posY)[compteur].getPositionY()].getEstOccupe()) {
+							
 							panel.getJb_case()[this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(posX, posY)[compteur].getPositionX()]
 									[this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(posX, posY)[compteur].getPositionY()]
 											.setBackground(new Color(0,0,0));
