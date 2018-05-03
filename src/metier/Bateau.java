@@ -261,13 +261,7 @@ public class Bateau {
 	public int genAlea(int lower, int higher) {
 		
 		
-		
-		
-		
 		int x = (int)(Math.random() * (higher-lower)) + lower;
-		
-		//int y = (int)(Math.random() * (higher-lower)) + lower;
-		
 		
 		
 		return x;
