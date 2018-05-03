@@ -99,6 +99,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		jl_tour = new JLabel("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
 				+ "<br><br></html>");
 		jl_tour.setFont(font);
+		jl_score = new JLabel("");
 		jl_score.setFont(font);
 		jp_tour.add(jl_tour);
 		jp_tour.add(jl_score);
