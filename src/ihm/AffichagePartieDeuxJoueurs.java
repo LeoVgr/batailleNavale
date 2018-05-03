@@ -168,6 +168,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		this.validate();
 
 		InputMap imap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+<<<<<<< Updated upstream
 		ActionMap amap = this.getActionMap();
 		Action tournerBat = new AbstractAction() {
 
@@ -276,6 +277,26 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		imap.put(k, "tourner");
 		amap.put("tourner", tournerBat);
 		this.requestFocus();
+=======
+        ActionMap amap = this.getActionMap();
+        Action tournerBat = new AbstractAction() {
+        public void actionPerformed(ActionEvent e) {
+            	
+            	for(int ig=0;ig<partie.getJoueurs()[partie.getJoueurActuel()].getBateaux().length;ig++) {
+
+        			if(partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()) {
+        				partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].tournerBateau();
+        			}
+            	}     			
+            
+            }
+        };
+
+        KeyStroke k = KeyStroke.getKeyStroke(KeyEvent.VK_R, 0);
+        imap.put(k, "tourner");
+        amap.put("tourner", tournerBat);
+        this.requestFocus();
+>>>>>>> Stashed changes
 	}
 
 
@@ -408,6 +429,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					gridContraintes.gridy=1;
 					gridContraintes.insets = new Insets(0, 0, 100, 0);
 					this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
+<<<<<<< Updated upstream
 
 					/*
 					gridContraintes.gridx= 2;
@@ -417,6 +439,17 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 					 */
 
+=======
+					
+					//JOUEUER ADVERSE
+					/*gridContraintes.gridx= 2;
+					gridContraintes.gridy=1;
+					gridContraintes.insets = new Insets(0, 20, 100, 0);
+					this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);*/
+					
+					
+					
+>>>>>>> Stashed changes
 					this.repaint();
 					this.revalidate();
 				}

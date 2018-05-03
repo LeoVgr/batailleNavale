@@ -248,7 +248,7 @@ public class AffichagePartieUnJoueur extends JPanel implements ActionListener{
 						
 					}else {    
 						
-						//placement des bateaux par le joueur 2
+						//placement des bateaux par l'ordi
 						
 						this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
 						this.remove(jp_listeBat);
@@ -284,9 +284,10 @@ public class AffichagePartieUnJoueur extends JPanel implements ActionListener{
 						gridContraintes.insets = new Insets(0, 0, 100, 0);
 						this.add(new JLabel("L'ordinateur a placé ses bateaux"),gridContraintes);
 						
+						
 						this.repaint();
 						this.revalidate();
-						bateauxTousPlace=false;
+						bateauxTousPlace=true;
 						finPlacement=true;
 					}
 					
