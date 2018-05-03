@@ -95,7 +95,6 @@ public class AffichageBoutonGrillePlateauBateaux extends JButton implements Mous
 				}
 			}
 		}
-		// TODO Auto-generated method stub
 		
 		
 	}

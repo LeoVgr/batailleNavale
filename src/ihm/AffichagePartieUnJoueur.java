@@ -260,12 +260,25 @@ public class AffichagePartieUnJoueur extends JPanel implements ActionListener{
 						jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
 								+ "<br><br></html>");
 						
-						// on affiche la grille des bateaux du joueurs suivant
+						
+						for(int compteur=0; compteur< this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux().length;compteur++) {
+							int random = this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].genAlea(0,10); 
+							
+							this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].setPositionX(random);
+							
+							random = this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].genAlea(0,10); 
+							this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].setPositionY(random);
+							
+							System.out.println(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].getPositionX());
+							System.out.println(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].getPositionY());
+						}
+						
+						/*// on affiche la grille des bateaux du joueurs suivant
 						plateauxBateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
 						gridContraintes.gridx= 1;
 						gridContraintes.gridy=1;
 						gridContraintes.insets = new Insets(0, 0, 100, 0);
-						this.add(plateauxBateaux[this.partie.getJoueurActuel()],gridContraintes);
+						this.add(plateauxBateaux[this.partie.getJoueurActuel()],gridContraintes);*/
 						
 						this.repaint();
 						this.revalidate();
