@@ -11,7 +11,7 @@ public class Ordi extends Joueur{
 	
 	
 	
-	public int GenAleaPosition(){
+	public int genAleaPosition(){
 		
 	
 		int res[][] = null;

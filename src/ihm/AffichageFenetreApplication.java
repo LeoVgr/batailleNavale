@@ -32,9 +32,6 @@ public class AffichageFenetreApplication extends JFrame  {
 		this.repaint();
 		this.validate();
 	
-		
-		
-	
-		
 	}
+	
 }

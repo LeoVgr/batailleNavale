@@ -207,13 +207,14 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	                "Voulez-vous abandonner la partie ?",
 	                "Abandon",
 	                JOptionPane.YES_NO_OPTION);
-	        if(answer == JOptionPane.YES_OPTION) {
+	        /*if(answer == JOptionPane.YES_OPTION) {
 	        	int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
 	        	
 	        	String gagnant= this.partie.getJoueurs()[joueurAdverse].getNom();
 	        	System.out.println(gagnant);
-	        	fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,gagnant));
-	        }
+	        	fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,gagnant));*/
+
+	        //}
 		}
 		
 		// passage joueur suivant et grille suivante si le bouton valider est pressé
@@ -327,16 +328,13 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					gridContraintes.insets = new Insets(0, 0, 100, 0);
 					this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
 					
-					/*if (compteur%2==0)
-					{
-					
-					
+					/*
 					gridContraintes.gridx= 2;
 					gridContraintes.gridy=1;
 					gridContraintes.insets = new Insets(0, 20, 100, 0);
 					this.add(plateauxTir[this.partie.getJoueurActuel()+1],gridContraintes);
 					
-					}*/
+					*/
 					
 					this.repaint();
 					this.revalidate();
