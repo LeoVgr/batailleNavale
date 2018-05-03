@@ -328,7 +328,14 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					}else {    //placement des bateaux par le joueur 2
 						this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
 						this.partie.joueurSuivant();
-
+						
+						// remise a 0 des indications/couleurs
+						affNomBat_sousMarin.setForeground((new Color(0,0,0)));
+						affNomBat_croiseur.setForeground((new Color(0,0,0)));
+						affNomBat_contreTorpilleur.setForeground((new Color(0,0,0)));
+						affNomBat_porteAvion.setForeground((new Color(0,0,0)));
+						affNomBat_torpilleur.setForeground((new Color(0,0,0)));
+						
 						//mise a jour du tour
 						jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
 								+ "<br><br></html>");
