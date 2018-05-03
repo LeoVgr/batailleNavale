@@ -110,18 +110,17 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		case "touché":
 			image = new ImageIcon(this.getClass().getResource("/boom.jpg"));
 			this.jb_case[i][j].setIcon(image);
-			//this.jb_case[i][j].setBackground(new Color(100,0,0));
 			break;
 
 		case "eau":
 			image = new ImageIcon(this.getClass().getResource("/eau.jpg"));
 			System.out.println(image == null);
-			//this.jb_case[i][j].setBackground(new Color(0,0,100));
 			this.jb_case[i][j].setIcon(image);
 			break;
 
 		case "coulé":
-			this.jb_case[i][j].setBackground(new Color(100,0,0));
+			image = new ImageIcon(this.getClass().getResource("/boom.jpg"));
+			this.jb_case[i][j].setIcon(image);
 			Object[] options = {"Ok"};
 			JOptionPane.showOptionDialog(this,
 					"Bateau coulé !",

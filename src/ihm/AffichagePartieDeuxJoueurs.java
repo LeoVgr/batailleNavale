@@ -311,7 +311,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						
 						int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
 	  
-						plateauxTir[joueurAdverse].setPreferredSize(new Dimension(600,600));
+						plateauxTir[joueurAdverse].setPreferredSize(new Dimension(500,500));
 						gridContraintes.gridx= 2;
 						gridContraintes.gridy=1;
 						gridContraintes.insets = new Insets(0, 20, 100, 0);
@@ -401,7 +401,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
 
 		        	
-		        	System.out.println(joueurAdverse);
+					plateauxTir[joueurAdverse].setPreferredSize(new Dimension(500,500));
 					gridContraintes.gridx= 2;
 					gridContraintes.gridy=1;
 					gridContraintes.insets = new Insets(0, 20, 100, 0);
