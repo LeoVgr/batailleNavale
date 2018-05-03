@@ -11,7 +11,6 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import metier.Joueur;
 
 public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 	private AffichageFenetreApplication fenetreApp;
