@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -16,7 +17,8 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 	private AffichageBoutonGrillePlateauBateaux[][] jb_case;
 	private Partie partie;
 	private AffichageFenetreApplication fenetre;
-	private JLabel[] nomPosLettre;
+	private JButton[] nomPosLettre;
+	private JButton[] nomPosChiffre;
 	
 	
 
@@ -36,9 +38,28 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 		
 		
 		String[] lettre = new String[] {"A","B","C","D","E","F","G","H","I","J"};
-		nomPosLettre = new JLabel[10];
+		String[] chiffre = new String[] {" ","1","2","3","4","5","6","7","8","9","10"};
+		nomPosLettre = new JButton[10];
+		nomPosChiffre = new JButton[11];
+		
+	
+		
+		
+		
+		
+		
+		for(int i =0; i<nomPosChiffre.length;i++) {
+			nomPosChiffre[i]=new JButton(chiffre[i]);
+			nomPosChiffre[i].setBackground(new Color(100,100,100));
+			
+		}
+		
+		// on ajoute une case blanche
+		this.add(nomPosChiffre[0]);
+		
 		for(int i =0; i<nomPosLettre.length;i++) {
-			nomPosLettre[i]=new JLabel(lettre[i]);
+			nomPosLettre[i]=new JButton(lettre[i]);
+			nomPosLettre[i].setBackground(new Color(100,100,100));
 			this.add(nomPosLettre[i]);
 		}
 		
@@ -46,12 +67,17 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 		this.setLayout(new GridLayout(11,11));
 		
 		// ajout des composants 
+		
 		for(int compteurLettreb=0; compteurLettreb<10; compteurLettreb ++) {
+			this.add(nomPosChiffre[compteurLettreb+1]);
 			for(int compteurChiffreb=0; compteurChiffreb<10; compteurChiffreb ++) {
+				
 				this.add(jb_case[compteurLettreb][compteurChiffreb]);
 				jb_case[compteurLettreb][compteurChiffreb].addActionListener(this);
 				
-			}	
+				
+			}
+			
 		}
 		
 		

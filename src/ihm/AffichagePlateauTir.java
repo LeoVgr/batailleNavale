@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -14,12 +15,14 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 	private Partie partie;
 	private AffichageFenetreApplication fenetreApp;
 	private AffichageBoutonGrillePlateauTirs[][] jb_case;
-	
+	private JButton[] nomPosLettre;
+	private JButton[] nomPosChiffre;
+
 	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp) {
 		this.partie=partie;
 		this.fenetreApp=fenetreApp;
-		
-		
+
+
 		// création des composants graphiques 
 		jb_case = new AffichageBoutonGrillePlateauTirs[10][10];
 		for(int compteurLettre=0; compteurLettre<10; compteurLettre ++) {
@@ -27,20 +30,51 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 				jb_case[compteurLettre][compteurChiffre] = new AffichageBoutonGrillePlateauTirs(partie,compteurLettre,compteurChiffre);
 			}	
 		}
-				
+
+
+		String[] lettre = new String[] {"A","B","C","D","E","F","G","H","I","J"};
+		String[] chiffre = new String[] {" ","1","2","3","4","5","6","7","8","9","10"};
+		nomPosLettre = new JButton[10];
+		nomPosChiffre = new JButton[11];
+
+
+
+
+
+
+
+		for(int i =0; i<nomPosChiffre.length;i++) {
+			nomPosChiffre[i]=new JButton(chiffre[i]);
+			nomPosChiffre[i].setBackground(new Color(100,100,100));
+
+		}
+
+		// on ajoute une case blanche
+		this.add(nomPosChiffre[0]);
+
+		for(int i =0; i<nomPosLettre.length;i++) {
+			nomPosLettre[i]=new JButton(lettre[i]);
+			nomPosLettre[i].setBackground(new Color(100,100,100));
+			this.add(nomPosLettre[i]);
+		}
+
 		// définition des layout
-		this.setLayout(new GridLayout(10,10));
-				
+		this.setLayout(new GridLayout(11,11));
+
 		// ajout des composants 
+
 		for(int compteurLettreb=0; compteurLettreb<10; compteurLettreb ++) {
+			this.add(nomPosChiffre[compteurLettreb+1]);
 			for(int compteurChiffreb=0; compteurChiffreb<10; compteurChiffreb ++) {
+
 				this.add(jb_case[compteurLettreb][compteurChiffreb]);
 				jb_case[compteurLettreb][compteurChiffreb].addActionListener(this);
-						
-			}	
+
+
+			}
+
 		}
-				
-				
+
 	}
 
 	@Override
@@ -49,7 +83,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		boolean trouve = false;
 		int i=0;
 		int j=0;
-				
+
 		while(!trouve && i<10 ) {
 			while(!trouve && j<10  ) {
 
@@ -58,32 +92,32 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 				}else {
 					j++;
 				}
-						
+
 			}
 			if(!trouve) {
 				i++;
 				j=0;
 			}
-					
+
 		}
-		
+
 		// le joueur actuel tir sur le plateau bateau du joueur adverse
-		
+
 		switch(this.partie.getJoueurs()[this.partie.getJoueurActuel()].tirer(this.partie.getJoueurs()[this.partie.joueurAdverse(this.partie.getJoueurActuel())], i, j))
 		{
 		case "touché":
 			this.jb_case[i][j].setBackground(new Color(100,0,0));
 			break;
-		
+
 		case "eau":
 			this.jb_case[i][j].setBackground(new Color(0,0,100));
 			break;
-		
+
 		case "coulé":
 			this.jb_case[i][j].setBackground(new Color(100,0,0));
 			Object[] options = {"Ok"};
 			JOptionPane.showOptionDialog(this,
-				"Bateau coulé !",
+					"Bateau coulé !",
 					"Attention",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.PLAIN_MESSAGE,
@@ -91,14 +125,14 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 					options,
 					options[0]);
 			break;
-			
+
 		case "gagné":
 			fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()));
-			
+
 		default :
 			Object[] options2 = {"Ok"};
 			JOptionPane.showOptionDialog(this,
-				"Vous avez déjà tiré sur cette case ou vous avez déjà tiré !",
+					"Vous avez déjà tiré sur cette case ou vous avez déjà tiré !",
 					"Attention",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.WARNING_MESSAGE,
@@ -107,19 +141,19 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 					options2[0]);
 			break;
 		}
-		
-		
-		
-		
-	
-		
-		
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
 	}
-	
+
 }	
 

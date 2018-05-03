@@ -18,5 +18,7 @@ public class AffichageBoutonGrillePlateauTirs extends JButton{
 	
 		
 		this.setBackground(new Color(175,175,191));
+		
+		
 	}
 }
