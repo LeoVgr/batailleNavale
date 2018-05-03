@@ -1,6 +1,7 @@
 
 package ihm;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -56,6 +57,9 @@ public class AffichagePartieUnJoueur extends JPanel implements ActionListener{
 	private boolean finPlacement = false;
 	
 	public AffichagePartieUnJoueur(AffichageFenetreApplication fenetreApp, Partie partie) {
+		
+		this.fenetreApp=fenetreApp;
+		
 		this.partie=partie;
 		// définition du layout
 		this.setLayout(new GridBagLayout());
@@ -164,25 +168,78 @@ public class AffichagePartieUnJoueur extends JPanel implements ActionListener{
 		this.validate();
 
 		InputMap imap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        ActionMap amap = this.getActionMap();
-        Action tournerBat = new AbstractAction() {
-        public void actionPerformed(ActionEvent e) {
-            	
-            	for(int ig=0;ig<partie.getJoueurs()[partie.getJoueurActuel()].getBateaux().length;ig++) {
 
-        			if(partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()) {
-        				partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].tournerBateau();
-        			}
-            	}
-        			
-            	
-            
-            }
-        };
+		ActionMap amap = this.getActionMap();
+		Action tournerBat = new AbstractAction() {
 
-        KeyStroke k = KeyStroke.getKeyStroke(KeyEvent.VK_R, 0);
-        imap.put(k, "tourner");
-        amap.put("tourner", tournerBat);
+			public void actionPerformed(ActionEvent e) {
+
+				for(int ig=0;ig<partie.getJoueurs()[partie.getJoueurActuel()].getBateaux().length;ig++) {
+
+					if(partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].isEstSelectionner()) {
+						for(int caseX=0;caseX<plateauxBateaux[partie.getJoueurActuel()].getJb_case().length;caseX++) {
+
+							for(int caseY=0;caseY<plateauxBateaux[partie.getJoueurActuel()].getJb_case().length;caseY++) {
+								if(plateauxBateaux[partie.getJoueurActuel()].getJb_case()[caseX][caseY].isSourisDessus()) {
+									//on trouve la case qui est sous la souris
+
+
+									if(partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)!=null) {
+										for(int compteur=0;compteur<partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY).length;compteur++) {
+
+
+
+											if(partie.getJoueurs()[partie.getJoueurActuel()].getPlateauBateau().getGrille()[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionX()]
+													[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionY()].getEstOccupe()) {
+
+												plateauxBateaux[partie.getJoueurActuel()].getJb_case()[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionX()]
+														[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionY()]
+																.setBackground(new Color(0,0,0));
+
+											}else {
+												plateauxBateaux[partie.getJoueurActuel()].getJb_case()[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionX()]
+														[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionY()]
+																.setBackground(new Color(175,175,191));
+											}
+										}
+									}
+								}
+							}
+						}
+
+
+
+						partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].tournerBateau();
+
+						for(int caseX=0;caseX<plateauxBateaux[partie.getJoueurActuel()].getJb_case().length;caseX++) {
+
+							for(int caseY=0;caseY<plateauxBateaux[partie.getJoueurActuel()].getJb_case().length;caseY++) {
+								if(plateauxBateaux[partie.getJoueurActuel()].getJb_case()[caseX][caseY].isSourisDessus()) {
+									//on trouve la case qui est sous la souris
+
+									if(partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)!=null) {
+										for(int compteur=0;compteur<partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY).length;compteur++) {
+
+												plateauxBateaux[partie.getJoueurActuel()].getJb_case()[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionX()]
+														[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionY()]
+																.setBackground(new Color(40,100,12));
+
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		};
+
+		KeyStroke k = KeyStroke.getKeyStroke(KeyEvent.VK_R, 0);
+		imap.put(k, "tourner");
+		amap.put("tourner", tournerBat);
+		this.requestFocus();
+
+      
         this.requestFocus();
 	}
 	
@@ -324,6 +381,9 @@ public class AffichagePartieUnJoueur extends JPanel implements ActionListener{
 				
 					// on recharge l'arme du joueur
 					this.partie.getJoueurs()[this.partie.getJoueurActuel()].setTirAutoriser(true);
+					
+					//on passe au joueur suivant
+					this.partie.joueurSuivant();
 					
 					//mise a jour du tour
 					jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur

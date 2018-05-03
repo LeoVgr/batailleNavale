@@ -256,14 +256,15 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					"Voulez-vous abandonner la partie ?",
 					"Abandon",
 					JOptionPane.YES_NO_OPTION);
-			/*if(answer == JOptionPane.YES_OPTION) {
-	        	int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
+			if(answer == JOptionPane.YES_OPTION) {
+				this.partie.joueurSuivant();
+	        	int joueurAdverse = this.partie.getJoueurActuel();
 
 	        	String gagnant= this.partie.getJoueurs()[joueurAdverse].getNom();
 	        	System.out.println(gagnant);
-	        	fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,gagnant));*/
+	        	fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,gagnant));
 
-			//}
+			}
 		}
 
 		// passage joueur suivant et grille suivante si le bouton valider est pressé
@@ -284,6 +285,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					compteur++;
 					// si le joueur deux place tous ses bateaux est valide, alors la phase de placement des bateaux est fini
 					if(finPlacement) {
+						
 						//on termine la phase de placement
 						this.partie.setPhaseDePlacement(false);
 
@@ -337,6 +339,8 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						this.revalidate();
 						bateauxTousPlace=false;
 						finPlacement=true;
+						
+					
 					}
 
 
@@ -355,8 +359,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 
 			}else {
+				
 				compteur++;
 				if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].isTirAutoriser()) {
+					
 					Object[] options = {"Ok"};
 					JOptionPane.showOptionDialog(this,
 							"Vous devez tirer !",
@@ -380,6 +386,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					//on passe au joueur suivant
 					this.partie.joueurSuivant();
 
+					//mise a jour du tour
+					jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
+							+ "<br><br></html>");	
+					
 					//on affiche la grille de tir
 					plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
 					gridContraintes.gridx= 1;
@@ -401,25 +411,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					this.repaint();
 					this.revalidate();
 				}
-
-
 			}
-
-
-
 		}
-
 	}
-
-
-
-
-
-
-
-
 }
-
-
-
-
