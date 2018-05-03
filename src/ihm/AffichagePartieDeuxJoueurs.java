@@ -33,6 +33,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	private AffichageFenetreApplication fenetreApp;
 
 	private JLabel jl_tour;
+	private JLabel jl_score;
 
 	private Partie partie;
 
@@ -93,7 +94,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		jl_tour = new JLabel("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
 				+ "<br><br></html>");
 		jl_tour.setFont(font);
+		jl_score.setFont(font);
 		jp_tour.add(jl_tour);
+		jp_tour.add(jl_score);
+		
 
 		plateauxBateaux = new AffichagePlateauBateaux[2];
 		plateauxTir = new AffichagePlateauTir[2];
