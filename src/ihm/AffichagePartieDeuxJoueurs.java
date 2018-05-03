@@ -168,6 +168,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		this.validate();
 
 		InputMap imap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+
 		ActionMap amap = this.getActionMap();
 		Action tournerBat = new AbstractAction() {
 
@@ -200,26 +201,11 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 														[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionY()]
 																.setBackground(new Color(175,175,191));
 											}
-
-
-
-
 										}
-
 									}
-
-
 								}
-
-
-
-
 							}
 						}
-
-
-
-
 
 
 
@@ -231,51 +217,30 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 								if(plateauxBateaux[partie.getJoueurActuel()].getJb_case()[caseX][caseY].isSourisDessus()) {
 									//on trouve la case qui est sous la souris
 
-
 									if(partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)!=null) {
 										for(int compteur=0;compteur<partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY).length;compteur++) {
-
-
-
-											
 
 												plateauxBateaux[partie.getJoueurActuel()].getJb_case()[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionX()]
 														[partie.getJoueurs()[partie.getJoueurActuel()].getBateaux()[ig].getMesCasesPositionnement(caseX, caseY)[compteur].getPositionY()]
 																.setBackground(new Color(40,100,12));
 
-											
-
-
-
-
 										}
-
 									}
-
-
 								}
-
-
-
-
 							}
 						}
 					}
-
-
-
 				}
-
-
-
 			}
-
 		};
 
 		KeyStroke k = KeyStroke.getKeyStroke(KeyEvent.VK_R, 0);
 		imap.put(k, "tourner");
 		amap.put("tourner", tournerBat);
 		this.requestFocus();
+
+      
+        this.requestFocus();
 	}
 
 
@@ -336,6 +301,16 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						gridContraintes.gridy=1;
 						gridContraintes.insets = new Insets(0, 0, 100, 0);
 						this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
+						
+						
+						
+						int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
+	  
+						plateauxTir[joueurAdverse].setPreferredSize(new Dimension(600,600));
+						gridContraintes.gridx= 2;
+						gridContraintes.gridy=1;
+						gridContraintes.insets = new Insets(0, 20, 100, 0);
+						this.add(plateauxTir[joueurAdverse],gridContraintes);
 
 						this.repaint();
 						this.revalidate();
@@ -409,13 +384,16 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					gridContraintes.insets = new Insets(0, 0, 100, 0);
 					this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
 
-					/*
+					//JOUEUER ADVERSE
+					int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
+
+		        	
+		        	System.out.println(joueurAdverse);
 					gridContraintes.gridx= 2;
 					gridContraintes.gridy=1;
 					gridContraintes.insets = new Insets(0, 20, 100, 0);
-					this.add(plateauxTir[this.partie.getJoueurActuel()+1],gridContraintes);
-
-					 */
+					this.add(plateauxTir[joueurAdverse],gridContraintes);
+					
 
 					this.repaint();
 					this.revalidate();
