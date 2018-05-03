@@ -286,7 +286,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 						//on enleve la grille de placement 
 						this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
-						this.remove(plateauxTir[this.partie.getJoueurActuel()]);
+						this.remove(plateauxTir[this.partie.getJoueurActuel()]);	
 						this.remove(jp_listeBat);
 						this.partie.joueurSuivant();
 
@@ -336,7 +336,6 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						finPlacement=true;
 					}
 
-
 				}else {
 					Object[] options = {"Ok"};
 					JOptionPane.showOptionDialog(this,
@@ -348,8 +347,6 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 							options,
 							options[0]);
 				}
-
-
 
 			}else {
 				compteur++;
@@ -394,29 +391,16 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					gridContraintes.insets = new Insets(0, 20, 100, 0);
 					this.add(plateauxTir[joueurAdverse],gridContraintes);
 					
-
+					
+				
+					gridContraintes.gridx= 2;
+					gridContraintes.gridy=0;
+					gridContraintes.insets = new Insets(0, 20, 100, 0);
+					this.add(new JLabel(this.partie.getJoueurs()[joueurAdverse].getNom()),gridContraintes);
 					this.repaint();
 					this.revalidate();
 				}
-
-
 			}
-
-
-
 		}
-
 	}
-
-
-
-
-
-
-
-
 }
-
-
-
-
