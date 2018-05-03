@@ -82,25 +82,39 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 		jl_tour = new JLabel("");
 		
-		ImageIcon image = new ImageIcon(this.getClass().getResource(""));
+		ImageIcon imageSousMarin = new ImageIcon(this.getClass().getResource("/sous-marin.jpg"));
+		ImageIcon imageCroiseur = new ImageIcon(this.getClass().getResource("/croiseur.png"));
+		ImageIcon imageContreTorpilleur = new ImageIcon(this.getClass().getResource("/contre-torpilleur.png"));
+		ImageIcon imagePorteAvions = new ImageIcon(this.getClass().getResource("/porte-avions.jpg"));
+		ImageIcon imageTorpilleur = new ImageIcon(this.getClass().getResource("/torpilleur.png"));
 		
 		// création bateau joueur 1
 		affNomBat_sousMarin = new AffichageNomBateaux("Sous-marin", partie,new Bateau[]{partie.getJoueurs()[0].getBateaux()[0],partie.getJoueurs()[1].getBateaux()[0]});
-		image = new ImageIcon(this.getClass().getResource("/sous-marin.jpg"));
-		affNomBat_sousMarin.setIcon(image);
+		affNomBat_sousMarin.setIcon(imageSousMarin);
+		
 		affNomBat_croiseur = new AffichageNomBateaux("Croiseur", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[1],partie.getJoueurs()[1].getBateaux()[1]});
+		affNomBat_croiseur.setIcon(imageCroiseur);
+		
 		affNomBat_contreTorpilleur = new AffichageNomBateaux("Contre-torpilleur", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[2],partie.getJoueurs()[1].getBateaux()[2]});
+		affNomBat_contreTorpilleur.setIcon(imageContreTorpilleur);
+		
 		affNomBat_porteAvion = new AffichageNomBateaux("Porte-avion", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[3],partie.getJoueurs()[1].getBateaux()[3]});
+		affNomBat_porteAvion.setIcon(imagePorteAvions);
+		
 		affNomBat_torpilleur = new AffichageNomBateaux("Torpilleur", partie,new Bateau[] {partie.getJoueurs()[0].getBateaux()[4],partie.getJoueurs()[1].getBateaux()[4]});
-
+		affNomBat_torpilleur.setIcon(imageTorpilleur);
 
 
 		Font font= new Font("Arial",Font.PLAIN,20);
 		jl_tour = new JLabel("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
 				+ "<br><br></html>");
 		jl_tour.setFont(font);
+		
+		
 		jl_score = new JLabel("");
 		jl_score.setFont(font);
+		
+		
 		jp_tour.add(jl_tour);
 		jp_tour.add(jl_score);
 		
