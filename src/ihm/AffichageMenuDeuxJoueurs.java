@@ -32,7 +32,11 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 	private JLabel jl_nomJ2;
 	
 	
-	
+	/**
+	 * Constructeur de la classe AffichageMenuDeuxJoueurs, permet de créer un menu deux joueurs (ou il faut entrer les noms des joueurs
+	 * et valider pour lancer la partie. Cette étape permet de récupérer les noms des joueurs.
+	 * @param fenetreAppConstr
+	 */
 	public AffichageMenuDeuxJoueurs(AffichageFenetreApplication fenetreAppConstr) {
 		
 	
@@ -117,7 +121,9 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 }
 
 	
-
+	/**
+	 * Permet de lancer les traitements associés lorsque l'utilisateur clique sur une option du menu.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource()==jl_nouvellePartie) {
@@ -128,7 +134,9 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 		}
 		
 	}
-
+	/**
+	 * Permet de faire des effet grisés lorsque l'utilisateur passe une option.
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		if(e.getSource()==jl_nouvellePartie ) {
@@ -138,7 +146,9 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 		jl_retour.setForeground(new Color(175,166,164));
 		}
 	}
-
+	/**
+	 * Permet de rétablir les couleurs de l'option lorsque l'utilisateur n'est plus sur l'option.
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 		jl_retour.setForeground(new Color(0,0,0));

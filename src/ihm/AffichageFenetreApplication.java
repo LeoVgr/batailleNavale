@@ -16,6 +16,11 @@ import javax.swing.JPanel;
 
 public class AffichageFenetreApplication extends JFrame  {
 	
+	/**
+	 * Constructeur de la fenêtre de notre applcation. Permet de contenir tous les panels qui suivront 
+	 * pour le déroulement du jeu.
+	 * 
+	 */
 	public AffichageFenetreApplication(){
 		
 		this.setDefaultLookAndFeelDecorated(false); 
@@ -41,7 +46,11 @@ public class AffichageFenetreApplication extends JFrame  {
 		this.setVisible(true);
 		
 	}
-	
+	/**
+	 * Méthode permettant de changer un panel par un autre dans la fenetre
+	 * @param ancien ancien panel qui sera enlever 
+	 * @param panel nouveau panel qui remplacera l'ancien
+	 */
 	public void changePanel(JPanel ancien,JPanel panel) {
 		
 		

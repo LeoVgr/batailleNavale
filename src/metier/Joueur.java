@@ -200,7 +200,11 @@ public class Joueur {
 	}
 	
 	
-	
+	/**
+	 * Méthode permettant d'ajouter a bateau dans la liste des bateau du joueur courant.
+	 * Cette méthode ajoute le bateau à une position qui n'en contient aucun, sinon aucun ajout ne sera fait si la liste est pleine
+	 * @param bat bateau a ajouter 
+	 */
 	public void addBateau(Bateau bat) {
 		int i=0;
 		boolean ajoute=false;
@@ -222,6 +226,10 @@ public class Joueur {
 		}
 		
 	}
+	/**
+	 * Méthode permettant de savoir si tous les bateaux du joueur courant sont coulés
+	 * @return
+	 */
 	public boolean sontTousCoule() {
 		boolean res =true;
 		

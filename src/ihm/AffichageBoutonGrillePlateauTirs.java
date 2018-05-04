@@ -13,6 +13,12 @@ public class AffichageBoutonGrillePlateauTirs extends JButton{
 	private int posX;
 	private int posY;
 	
+	/**
+	 * Constructeur a priorisé. Ce constructeur instancie un objet de la classe AffichageBoutonGrillePlateauTirs 
+	 * @param partieConstr Controlleur
+	 * @param posX position x du bouton dans la grille
+	 * @param posY position y du bouton dans la grille (origine en haut à gauche de la grille)
+	 */
 	public AffichageBoutonGrillePlateauTirs(Partie partieConstr,int posX,int posY) {
 		this.partie=partieConstr;
 		this.posX=posX;

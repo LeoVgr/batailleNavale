@@ -30,6 +30,12 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 	
 	private GridBagConstraints gridContraintes;
 	
+	/**
+	 * Constrcuteur de la classe AffichageEcranVictoire. Ce constructeur permet de créer un objet de cette classe (utilisé pour l'écran de victoire)
+	 * @param fenetreAppConstr Fenetre de l'application 
+	 * @param gagnant Joueur qui correspond au joueur qui a gagné la partie (afin de récupérer son nom et son score)
+	 * @param partie Controlleur
+	 */
 	public AffichageEcranVictoire(AffichageFenetreApplication fenetreAppConstr, String gagnant, Partie partie) {
  
 		this.partie=partie;
@@ -80,6 +86,9 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 		this.revalidate();
 	}
 
+	/**
+	 * Méthode qui permet que lorsque le joueur clic sur le JLabel fin, qu'il revienne au menu de démarage.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource()==jl_fin) {
@@ -87,14 +96,19 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 		}
 		
 	}
-
-	@Override
+	/**
+	 * Permet de griser le texte lorsque l'utilisateur passe la souris sur le JLabel jl_fin
+	 */
+	@Override 
 	public void mouseEntered(MouseEvent e) {
 		if(e.getSource()==jl_fin) {
 			jl_fin.setForeground(new Color(175,166,164));
 		}
 		
 	}
+	/**
+	 * Permet de rétablir la couleur du texte lorsque la souris n'est plus sur le label
+	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		jl_fin.setForeground(new Color(0,0,0));

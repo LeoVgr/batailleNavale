@@ -58,7 +58,13 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 	private int compteur=1;
 	private boolean finPlacement = false;
-
+	
+	/**
+	 * Constructeur par défaut du Panel de la partie. Ce panel gère une partie de deux joueurs.
+	 * Il contient d'autre panel ainsi que des listener permettant d'intérargir avec l'utilisateur.
+	 * @param fenetreApp Fenetre de l'application
+	 * @param partie Controlleur
+	 */
 	public AffichagePartieDeuxJoueurs(AffichageFenetreApplication fenetreApp, Partie partie) {
 		
 		this.fenetreApp=fenetreApp;
@@ -206,7 +212,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 		ActionMap amap = this.getActionMap();
 		Action tournerBat = new AbstractAction() {
-
+			/**
+			 * Méthode permettant de gérer le pré-affichage du bateau lorsque le joueur décide de le faire tourner(
+			 * pour actualiser son affichage)
+			 */
 			public void actionPerformed(ActionEvent e) {
 
 				for(int ig=0;ig<partie.getJoueurs()[partie.getJoueurActuel()].getBateaux().length;ig++) {
@@ -268,7 +277,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 				}
 			}
 		};
-
+		
 		KeyStroke k = KeyStroke.getKeyStroke(KeyEvent.VK_R, 0);
 		imap.put(k, "tourner");
 		amap.put("tourner", tournerBat);
@@ -278,7 +287,9 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
         this.requestFocus();
 	}
 
-
+	/**
+	 * Méthode permettant de récupérer les actions qui se passe sur le panel nottament des boutosn cliqués
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

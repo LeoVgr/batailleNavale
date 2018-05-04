@@ -11,33 +11,18 @@ public class Bateau {
 	private Plateau plateau;
 	private boolean estSelectionner;
 	private boolean estPlace;
-	/**
-	 * Contructeur par défaut de la classe Bateau. Ce constructeur construit un objet avec des variables
-	 * non initialisées.
-	 */
-	public Bateau(Plateau plateau) {
-		this.nom="";
-		this.positionX=0;
-		this.positionY=0;
-		this.taille=1;
-		this.alignement="horizontal";
-		this.plateau= plateau;
-		this.etat = "neutre";
-		this.nbrTouche=0;
-		this.estSelectionner=false;
-		this.estPlace=false;
-	}
+	
 	
 	/**
-	 * Ce constructeur sera celui à privilégier. Ce dernier admet 5 paramètres d'entrée. Il assigne automatiquement
+	 * Ce constructeur sera celui à privilégier. Il assigne automatiquement
 	 * neutre à la variable état car un bateau sera à la création forcément neutre. Et le nombre de tirs reçu
 	 * sera nul donc nous affectons 0 à la variable nbrTouche. 
 	 * Dans le cadre de la variable etat, les valeurs préférables sont neutre, touche, coule.
-	 * @param nom
-	 * @param positionX
-	 * @param positionY
-	 * @param taille
-	 * @param alignement
+	 * @param nom nom du bateau
+	 * @param positionX position X de la première case du bateau
+	 * @param positionY position Y de la première case du bateau (origine en haut à gauche de la grille)
+	 * @param taille taille du bateau
+	 * @param alignement alignement du bateau (vertical ou horizontal)
 	 */
 	public Bateau(String nom, int positionX, int positionY, int taille, String alignement, Plateau plateau) {
 		this.nom=nom;
@@ -56,7 +41,10 @@ public class Bateau {
 	public boolean isEstPlace() {
 		return estPlace;
 	}
-
+	/**
+	 * Mettre le bateau en place sur la grille
+	 * @param estPlace
+	 */
 	public void setEstPlace(boolean estPlace) {
 		this.estPlace = estPlace;
 	}
@@ -121,7 +109,10 @@ public class Bateau {
 	public int getNbrTouche() {
 		return nbrTouche;
 	}
-
+	/**
+	 * Ajouter un certain nombre en plus du nombre de touché au bateau
+	 * @param nbrTouche
+	 */
 	public void setNbrTouche(int nbrTouche) {
 		this.nbrTouche += nbrTouche;
 	}
@@ -138,6 +129,7 @@ public class Bateau {
 	 * Méthode qui permet de connaître les cases sur lequel le bateau est. En retour nous avons un tableau de 
 	 * Case. ATTENTION : la taille du tableau retourné sera variable (la taille du tableau est égale à la taille
 	 * du bateau).
+	 * Si le bateau dépasse de la grille, alors la fonction renverra un tableau de cases null
 	 * @return
 	 */
 	public Case[] getMesCase() {
@@ -195,13 +187,20 @@ public class Bateau {
 		
 	}
 	
+	/**
+	 * Méthode permettant de mettre les cases sur lequel le bateau se situe en occupées.
+	 * Cette méthode informe donc au cases qu'elles contiennent un bateau.
+	 */
 	public void mettreMesCasesEnOccupée() {
 		for(int u=0; u < this.getMesCase().length;u++) {
 			this.getMesCase()[u].setEstOccupe(true);
 		}
 		
 	}
-	
+	/**
+	 * Méthode qui vérifie si le bateau courant chevauche un autre bateau
+	 * @return
+	 */
 	public boolean chevaucheUnAutreBateau() {
 		boolean chevaucheUnAutreBateau=false;
 		
@@ -212,6 +211,9 @@ public class Bateau {
 		}
 		return chevaucheUnAutreBateau;
 	}
+	/**
+	 * Méthode permettant de tourner un bateau (changer son alignement)
+	 */
 	public void tournerBateau() {
 		if (this.alignement.equals("vertical")){
 			this.setAlignement("horizontal");
@@ -220,6 +222,15 @@ public class Bateau {
 		}
 				
 	}
+	/**
+	 * Méthode permettant de connaitres les cases du bateaux même si il n'est pas posé sur la grille. 
+	 * En effet cette méthode renvoie un tableau de cases sur lequel le bateau se situerais si sa première case se 
+	 * trouvait sur la position indiqué en entrée de la méthode.
+	 * Si le bateau dépasse de la grille, alors la fonction renverra un tableau de cases null
+	 * @param posX Position X de la première case du bateau
+	 * @param posY Position Y de la première case du bateau
+	 * @return
+	 */
 	public Case[] getMesCasesPositionnement(int posX, int posY) {
 	Case[] tabCase= new Case[this.taille];
 		
@@ -258,14 +269,5 @@ public class Bateau {
 	
 	}
 	
-	public int genAlea(int lower, int higher) {
-		
-		
-		int x = (int)(Math.random() * (higher-lower)) + lower;
-		
-		
-		return x;
-		
-		
-	}
+	
 }

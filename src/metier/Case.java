@@ -82,6 +82,10 @@ public class Case {
 		this.estTouche=true;
 	}
 	
+	/**
+	 * Méthode permettant de dire que ce bateau est sélectionner afin d'être placé
+	 * @param bateau
+	 */
 	public void estSelectionnerPlacementBateau(Bateau bateau) {
 		bateau.setPositionX(this.positionX);
 		bateau.setPositionY(this.positionY);

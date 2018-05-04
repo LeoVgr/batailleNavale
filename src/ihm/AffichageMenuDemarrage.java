@@ -21,6 +21,11 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 	private JLabel jl_regles;
 	private JLabel jl_quitter;
 	
+	/**
+	 * Constrcuteur de la classe AffichageMenuDemarrage. Permet l'affichage d'un menu de démarrage avec trois choix possible.
+	 * Gère également les évèenements lié au menu.
+	 * @param fenetreAppConstr Fenetre de l'application
+	 */
 	public AffichageMenuDemarrage(AffichageFenetreApplication fenetreAppConstr) {
 		
 		// on récupère la fenetre de jeu
@@ -73,7 +78,9 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 	}
 	
 	
-
+	/**
+	 * Permet de savoir sur quel choix l'utilisateur a cliqué. 
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
@@ -91,7 +98,9 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 		}
 		
 	}
-
+	/**
+	 * permet de faire les effets grisé lorsque la souris passe sur l'option
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		if(e.getSource() == jl_deuxJoueurs || e.getSource() == jl_quitter || e.getSource()==jl_regles ) {
@@ -99,7 +108,9 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 		}
 		
 	}
-
+	/**
+	 * permet de rétablir la couleur initiale du texte lorsque l'utilisateur passe sur l'option.
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 		jl_deuxJoueurs.setForeground(new Color(0,0,0));

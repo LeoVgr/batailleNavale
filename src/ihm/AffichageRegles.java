@@ -31,7 +31,10 @@ public class AffichageRegles extends JPanel implements MouseListener{
 	
 	private AffichageFenetreApplication fenetreApp;
 	
-		
+		/**
+		 * Constructeur permettant de construire un JPanel qui contiendra les règles du jeu.
+		 * @param fenetreAppConstr Fenetre de l'application
+		 */
 		public AffichageRegles(AffichageFenetreApplication fenetreAppConstr) {
 			
 			// on récupère la fenetre de jeu

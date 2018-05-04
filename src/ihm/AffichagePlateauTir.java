@@ -21,8 +21,14 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 	private JButton[] nomPosLettre;
 	private JButton[] nomPosChiffre;
 	
-
-	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp, JLabel jl_score, Joueur joueur) {
+	/**
+	 * Constructeur qui permet de construire un panel qui sera la grille des tirs des joueurs.
+	 * 
+	 * @param partie Controlleur
+	 * @param fenetreApp Fenetre de l'application
+	 * @param jl_score Score des joueurs 
+	 */
+	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp, JLabel jl_score) {
 		this.partie=partie;
 		this.fenetreApp=fenetreApp;
 		
@@ -31,7 +37,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		jb_case = new AffichageBoutonGrillePlateauTirs[10][10];
 		for(int compteurLettre=0; compteurLettre<10; compteurLettre ++) {
 			for(int compteurChiffre=0; compteurChiffre<10; compteurChiffre ++) {
-				jb_case[compteurLettre][compteurChiffre] = new AffichageBoutonGrillePlateauTirs(partie,compteurLettre,compteurChiffre, joueur);
+				jb_case[compteurLettre][compteurChiffre] = new AffichageBoutonGrillePlateauTirs(partie,compteurLettre,compteurChiffre);
 			}	
 		}
 
@@ -80,7 +86,9 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		}
 
 	}
-
+	/**
+	 * Permet de gérer les actions lié à cette grille nottament les actions de tirs.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// recherche de la case qui a été cliquée

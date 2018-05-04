@@ -18,17 +18,6 @@ public class Partie {
 		this.phaseDePlacement=true;	
 	}
 
-	/**
-	 * Constructeur pour le mode 1 joueur
-	 *
-	 */
-	public Partie(String nomJ1) {
-		this.joueurs = new Joueur[2];
-		this.joueurActuel=0;
-		joueurs[0]=new Joueur(nomJ1,1,0);
-		joueurs[1]=new Ordi();
-		this.phaseDePlacement=true;	
-	}
 
 	public boolean isPhaseDePlacement() {
 		return phaseDePlacement;
@@ -51,7 +40,9 @@ public class Partie {
 	public void setJoueurs(Joueur[] joueurs) {
 		this.joueurs = joueurs;
 	}
-	
+	/**
+	 * Permet de passer au tour du joueur suivant
+	 */
 	public void joueurSuivant() {
 		if(this.joueurActuel==0) {
 			this.joueurActuel=1;
@@ -67,11 +58,18 @@ public class Partie {
 	}
 
 
-
+	/**
+	 * Méthode permettant de connaitre quel est le joueur qui joue actuellement
+	 * @param joueurActuel
+	 */
 	public void setJoueurActuel(int joueurActuel) {
 		this.joueurActuel = joueurActuel;
 	}
-	
+	/**
+	 * Méthode permettant de savoir qui est le joueur adversaire au joueur apssé en entrée
+	 * @param joueurActuel
+	 * @return
+	 */
 	public int joueurAdverse(int joueurActuel) {
 		if(this.joueurActuel==0) {
 			return 1;

@@ -22,7 +22,11 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 	
 	
 
-	
+	/**
+	 * Constructeur du panel qui affiche la grille de bateaux. Ce panel permet de gérer les évènement lié à cette grille.
+	 * @param partieConstr Controlleur
+	 * @param fenetre Fenetre de l'application
+	 */
 	public AffichagePlateauBateaux(Partie partieConstr, AffichageFenetreApplication fenetre) {
 		this.partie=partieConstr;
 		this.fenetre=fenetre;
@@ -84,7 +88,10 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 	}
 	
 	
-	
+	/**
+	 * Permet de controller les actions enregistrer nottament le placement
+	 *  des bateaux lors de la phase de placement des bateaux
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
