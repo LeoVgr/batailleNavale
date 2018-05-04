@@ -82,7 +82,12 @@ public class Joueur {
 	public void setScore(int score) {
 		this.score = score;
 	}
-
+	public void setScorePlus(int score) {
+		this.score += score;
+	}
+	public void setScoreMoins(int score) {
+		this.score = Math.max(0, this.score - score);
+	}
 	public boolean isEstGagnant() {
 		return estGagnant;
 	}

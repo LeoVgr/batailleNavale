@@ -7,7 +7,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,6 +27,7 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 	
 	public AffichageEcranVictoire(AffichageFenetreApplication fenetreAppConstr, String gagnant) {
 
+		
 		this.fenetreApp=fenetreAppConstr;
 		
 		this.setLayout(new GridBagLayout());
