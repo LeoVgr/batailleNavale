@@ -35,6 +35,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 	private JLabel jl_tour;
 	private JLabel jl_score;
+	private JLabel jl_message;
 
 	private Partie partie;
 
@@ -123,6 +124,9 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		jl_score = new JLabel("");
 		jl_score.setFont(font);
 		
+		jl_message = new JLabel("");
+		jl_message.setFont(font);
+		
 		
 		jp_tour.add(jl_tour);
 		jp_tour.add(jl_score,gridContraintes);
@@ -187,6 +191,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		gridContraintes.gridy=2;
 		this.add(jb_valider, gridContraintes);
 
+		gridContraintes.gridx= 0;
+		gridContraintes.gridy=2;
+		this.add(jl_message, gridContraintes);
+		
 		gridContraintes.gridx= 2;
 		gridContraintes.gridy=2;
 		this.add(jb_abandon, gridContraintes);
@@ -303,18 +311,19 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		// passage joueur suivant et grille suivante si le bouton valider est pressé
 
 		if(e.getSource()==jb_valider) {
-
+			jl_message.setText("");	
 			// on regarde si c'est la phase de placement des bateaux ou non
 			if(this.partie.isPhaseDePlacement()){
 				//on vérifie que les bateaux du joueurs soient tous placé avant de l'autoriser à passer au tour suivant
 				boolean bateauxTousPlace =true;
-
+				
 				for(int compteur=0; compteur< this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux().length;compteur++) {
 					if(!this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[compteur].isEstPlace()) {
 						bateauxTousPlace=false;
 					}
 				}
 				if(bateauxTousPlace) {
+					jl_message.setText("");
 					compteur++;
 					// si le joueur deux place tous ses bateaux est valide, alors la phase de placement des bateaux est fini
 					if(finPlacement) {
@@ -354,6 +363,9 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						this.revalidate();
 
 					}else {    //placement des bateaux par le joueur 2
+						
+						jl_message.setText("");
+						
 						this.remove(plateauxBateaux[this.partie.getJoueurActuel()]);
 						this.partie.joueurSuivant();
 						
@@ -394,12 +406,13 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 							null,
 							options,
 							options[0]);
+					jl_message.setText("Vous n'avez pas placé tous vos bateaux !");
 				}
-
+				
 
 
 			}else {
-				
+				jl_message.setText("");
 				compteur++;
 				if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].isTirAutoriser()) {
 					
@@ -412,10 +425,13 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 							null,
 							options,
 							options[0]);
+					jl_message.setText("Vous devez tirer !");
+					
 				}else {
+					jl_message.setText("");
 					//on enleve la grille de placement 
 					this.remove(plateauxTir[this.partie.getJoueurActuel()]);
-
+					jl_message.setText("");
 					// on recharge l'arme du joueur
 					this.partie.getJoueurs()[this.partie.getJoueurActuel()].setTirAutoriser(true);
 

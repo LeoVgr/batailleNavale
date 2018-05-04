@@ -83,6 +83,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// recherche de la case qui a été cliquée
+		
 		boolean trouve = false;
 		int i=0;
 		int j=0;
@@ -118,7 +119,6 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 
 		case "eau":
 			image = new ImageIcon(this.getClass().getResource("/eau.jpg"));
-			System.out.println(image == null);
 			this.jb_case[i][j].setIcon(image);
 			this.partie.getJoueurs()[this.partie.getJoueurActuel()].setScore(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getScore()-50);
 			break;
