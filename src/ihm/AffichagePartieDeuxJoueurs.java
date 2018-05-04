@@ -142,13 +142,8 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 			plateauxTir[i] = new AffichagePlateauTir(partie, fenetreApp,jl_score);
 		}
 
-
-
-
 		jb_valider=new JButton("Valider");
 		jb_abandon=new JButton("Abandonner");
-
-
 
 
 		// ajout des labels des bateaux
@@ -302,7 +297,6 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	        	int joueurAdverse = this.partie.getJoueurActuel();
 
 	        	String gagnant= this.partie.getJoueurs()[joueurAdverse].getNom();
-	        	System.out.println(gagnant);
 	        	fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,gagnant));
 
 			}
@@ -348,7 +342,6 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						gridContraintes.gridy=1;
 						gridContraintes.insets = new Insets(0, 0, 100, 0);
 						this.add(plateauxTir[this.partie.getJoueurActuel()],gridContraintes);
-						
 						
 						
 						int joueurAdverse = this.partie.joueurAdverse(this.partie.getJoueurActuel());
@@ -428,7 +421,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					jl_message.setText("Vous devez tirer !");
 					
 				}else {
-					jl_message.setText("");
+					
 					//on enleve la grille de placement 
 					this.remove(plateauxTir[this.partie.getJoueurActuel()]);
 					jl_message.setText("");

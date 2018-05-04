@@ -8,6 +8,7 @@ import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -17,6 +18,7 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 	
 	private JLabel jl_gagnant;
 	private JLabel jl_fin;
+	private JLabel jl_image;
 	
 	private GridBagConstraints gridContraintes;
 	
@@ -27,24 +29,34 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 		this.setLayout(new GridBagLayout());
 		this.gridContraintes = new GridBagConstraints();
 		
+		ImageIcon image = new ImageIcon(this.getClass().getResource("/victoire.jpg"));
+		
 		Font font = new Font("Arial",Font.BOLD,40);
 		
 		jl_gagnant = new JLabel( gagnant +" a gagné !");
 		jl_gagnant.setFont(font);
+		jl_gagnant.setBackground(Color.BLACK);
+		
+		jl_image = new JLabel("");
+		jl_image.setIcon(image);
 		
 		jl_fin = new JLabel("Fin");
 		jl_fin.setFont(new Font("Arial",Font.BOLD,20));
 		jl_fin.addMouseListener(this);
 		
-		
 		gridContraintes.gridx= 0;
 		gridContraintes.gridy=0;
-		//gridContraintes.insets = new Insets(0, 0, 0, 30 );
+		gridContraintes.insets = new Insets(0, 0, 30, 0 );
+		this.add(jl_image, gridContraintes);
+		
+		gridContraintes.gridx= 0;
+		gridContraintes.gridy=1;
+		gridContraintes.insets = new Insets(0, 0, 0, 30 );
 		this.add(jl_gagnant, gridContraintes);
 	
 		
 		gridContraintes.gridx= 0;
-		gridContraintes.gridy=1;
+		gridContraintes.gridy=2;
 		gridContraintes.insets = new Insets(100, 0, 0, 0);
 		this.add(jl_fin, gridContraintes);
 		
