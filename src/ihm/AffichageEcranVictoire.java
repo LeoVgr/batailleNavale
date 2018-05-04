@@ -1,5 +1,7 @@
 package ihm;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -7,8 +9,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
@@ -28,17 +33,32 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 	private JLabel jl_image;
 	private JLabel jl_score;
 	
+	private int compteur;
+	
 	private GridBagConstraints gridContraintes;
 	
-	/**
-	 * Constrcuteur de la classe AffichageEcranVictoire. Ce constructeur permet de créer un objet de cette classe (utilisé pour l'écran de victoire)
-	 * @param fenetreAppConstr Fenetre de l'application 
-	 * @param gagnant Joueur qui correspond au joueur qui a gagné la partie (afin de récupérer son nom et son score)
-	 * @param partie Controlleur
-	 */
-	public AffichageEcranVictoire(AffichageFenetreApplication fenetreAppConstr, String gagnant, Partie partie) {
+	public AffichageEcranVictoire(AffichageFenetreApplication fenetreAppConstr, String gagnant, Partie partie, int compteur) {
  
+		try {
+	        URL resource = this.getClass().getResource("/son.wav");
+	        AudioClip ac = Applet.newAudioClip(resource);
+	        ac.play();
+	        } catch (Exception e) {
+	            System.out.println(e);
+	        }
+	        
+	        
+	        /*URL resource = this.getClass().getResource("/imageAppli.jpg");
+	        BufferedImage image = null;
+	        try {
+	            image = ImageIO.read(resource);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }*/
+	        
 		this.partie=partie;
+		
+		this.compteur=compteur;
 		
 		this.fenetreApp=fenetreAppConstr;
 		
@@ -49,10 +69,10 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 		
 		Font font = new Font("Arial",Font.BOLD,40);
 		
-		jl_gagnant = new JLabel( gagnant +" a gagné !");
+		jl_gagnant = new JLabel( gagnant +" a gagnï¿½ !");
 		jl_gagnant.setFont(font);
 		
-		jl_score = new JLabel( "Score : "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getScore());
+		jl_score = new JLabel( "<html>Score : "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getScore()+"<br>Tour : "+compteur);
 		jl_score.setFont(font);
 		
 		jl_image = new JLabel("");
@@ -87,7 +107,7 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 	}
 
 	/**
-	 * Méthode qui permet que lorsque le joueur clic sur le JLabel fin, qu'il revienne au menu de démarage.
+	 * Mï¿½thode qui permet que lorsque le joueur clic sur le JLabel fin, qu'il revienne au menu de dï¿½marage.
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -107,7 +127,7 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 		
 	}
 	/**
-	 * Permet de rétablir la couleur du texte lorsque la souris n'est plus sur le label
+	 * Permet de rï¿½tablir la couleur du texte lorsque la souris n'est plus sur le label
 	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {

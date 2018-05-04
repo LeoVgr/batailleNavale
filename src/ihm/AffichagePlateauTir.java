@@ -21,19 +21,12 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 	private JButton[] nomPosLettre;
 	private JButton[] nomPosChiffre;
 	
-	/**
-	 * Constructeur qui permet de construire un panel qui sera la grille des tirs des joueurs.
-	 * 
-	 * @param partie Controlleur
-	 * @param fenetreApp Fenetre de l'application
-	 * @param jl_score Score des joueurs 
-	 */
-	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp, JLabel jl_score) {
+	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp, JLabel jl_score, int compteur) {
 		this.partie=partie;
 		this.fenetreApp=fenetreApp;
-		
+		this.compteur=compteur;
 
-		// création des composants graphiques 
+		// crï¿½ation des composants graphiques 
 		jb_case = new AffichageBoutonGrillePlateauTirs[10][10];
 		for(int compteurLettre=0; compteurLettre<10; compteurLettre ++) {
 			for(int compteurChiffre=0; compteurChiffre<10; compteurChiffre ++) {
@@ -68,7 +61,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 			this.add(nomPosLettre[i]);
 		}
 
-		// définition des layout
+		// dï¿½finition des layout
 		this.setLayout(new GridLayout(11,11));
 
 		// ajout des composants 
@@ -87,11 +80,11 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 
 	}
 	/**
-	 * Permet de gérer les actions lié à cette grille nottament les actions de tirs.
+	 * Permet de gï¿½rer les actions liï¿½ ï¿½ cette grille nottament les actions de tirs.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// recherche de la case qui a été cliquée
+		// recherche de la case qui a ï¿½tï¿½ cliquï¿½e
 		
 		boolean trouve = false;
 		int i=0;
@@ -126,7 +119,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		switch(this.partie.getJoueurs()[this.partie.getJoueurActuel()].tirer(this.partie.getJoueurs()[this.partie.joueurAdverse(this.partie.getJoueurActuel())], i, j))
 		{
 		
-		case "touché":
+		case "touchï¿½":
 			image = new ImageIcon(this.getClass().getResource("/boom.jpg"));
 			this.jb_case[i][j].setIcon(image);
 			this.partie.getJoueurs()[this.partie.getJoueurActuel()].setScorePlus(100);
@@ -139,13 +132,13 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 			this.partie.getJoueurs()[this.partie.getJoueurActuel()].setScoreMoins(10);
 			break;
 
-		case "coulé":
+		case "coulï¿½":
 			image = new ImageIcon(this.getClass().getResource("/boom.jpg"));
 			this.jb_case[i][j].setIcon(image);
 			Object[] options = {"Ok"};
 			this.partie.getJoueurs()[this.partie.getJoueurActuel()].setScorePlus(200);
 			JOptionPane.showOptionDialog(this,
-					"Bateau coulé !",
+					"Bateau coulï¿½ !",
 					"Attention",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.PLAIN_MESSAGE,
@@ -154,13 +147,13 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 					options[0]);
 			break;
 
-		case "gagné":
-			fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom(), this.partie));
+		case "gagnï¿½":
+			fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom(), this.partie, this.compteur));
 
 		default :
 			Object[] options2 = {"Ok"};
 			JOptionPane.showOptionDialog(this,
-					"Vous avez déjà tiré sur cette case ou vous avez déjà tiré !",
+					"Vous avez dï¿½jï¿½ tirï¿½ sur cette case ou vous avez dï¿½jï¿½ tirï¿½ !",
 					"Attention",
 					JOptionPane.YES_NO_OPTION,
 					JOptionPane.WARNING_MESSAGE,

@@ -33,6 +33,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	private JLabel jl_tour;
 	private JLabel jl_score;
 	private JLabel jl_message;
+	private JLabel jl_adversaire;
 
 	private Partie partie;
 
@@ -86,7 +87,9 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 		jl_tour = new JLabel("");
 		
-
+		
+		jl_adversaire = new JLabel("");
+	
 		
 		
 		ImageIcon imageSousMarin = new ImageIcon(this.getClass().getResource("/sous-marin.jpg"));
@@ -125,13 +128,15 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		jl_message = new JLabel("");
 		jl_message.setFont(font);
 		
-		
-		jp_tour.add(jl_tour);
+		gridContraintes.gridx = 0;
+		gridContraintes.gridy = 0;
+		jp_tour.add(jl_tour,gridContraintes);
 		
 		gridContraintes.gridx = 0;
 		gridContraintes.gridy = 1;
 		jl_score = new JLabel("Score : "+partie.getJoueurs()[this.partie.getJoueurActuel()].getScore());
 		jp_tour.add(jl_score,gridContraintes);
+		
 		
 
 		plateauxBateaux = new AffichagePlateauBateaux[2];
@@ -141,7 +146,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 			plateauxBateaux[i] = new AffichagePlateauBateaux(partie, fenetreApp);
 		}
 		for(int i=0;i< plateauxTir.length; i++) {
-			plateauxTir[i] = new AffichagePlateauTir(partie, fenetreApp,jl_score);
+			plateauxTir[i] = new AffichagePlateauTir(partie, fenetreApp,jl_score, this.compteur);
 		}
 
 		jb_valider=new JButton("Valider");
@@ -183,6 +188,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		gridContraintes.gridx= 1;
 		gridContraintes.gridy=0;
 		this.add(jp_tour, gridContraintes);
+		
+		gridContraintes.gridx = 2;
+		gridContraintes.gridy = 0;
+		this.add(jl_adversaire,gridContraintes);
 
 		gridContraintes.gridx= 1;
 		gridContraintes.gridy=2;
@@ -195,7 +204,9 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		gridContraintes.gridx= 2;
 		gridContraintes.gridy=2;
 		this.add(jb_abandon, gridContraintes);
+		
 
+		
 		// placement des bateaux du 1er Joueurs
 		plateauxBateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
 		gridContraintes.gridx= 1;
@@ -304,7 +315,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	        	int joueurAdverse = this.partie.getJoueurActuel();
 
 	        	String gagnant= this.partie.getJoueurs()[joueurAdverse].getNom();
-	        	fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,gagnant, this.partie));
+	        	fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,gagnant, this.partie, this.compteur));
 
 			}
 		}
@@ -342,6 +353,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
 								+ "<br><br></html>");	
 						jl_score.setText("Score : "+partie.getJoueurs()[this.partie.getJoueurActuel()].getScore());
+						
+						this.partie.joueurSuivant();
+						jl_adversaire.setText("Rappel des tirs de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom());
+						this.partie.joueurSuivant();
 
 						//on affiche la grille de tir
 						plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
@@ -380,6 +395,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 						jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
 								+ "<br><br></html>");
 						jl_score.setText("Score : "+partie.getJoueurs()[this.partie.getJoueurActuel()].getScore());
+						
 
 						// on affiche la grille des bateaux du joueurs suivant
 						plateauxBateaux[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
@@ -443,6 +459,10 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 					jl_tour.setText("<html>Au tour de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()+" de jouer ! - Tour "+compteur
 							+ "<br><br></html>");
 					jl_score.setText("Score : "+partie.getJoueurs()[this.partie.getJoueurActuel()].getScore());
+					
+					this.partie.joueurSuivant();
+					jl_adversaire.setText("Rappel des tirs de "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom());
+					this.partie.joueurSuivant();
 					
 					//on affiche la grille de tir
 					plateauxTir[this.partie.getJoueurActuel()].setPreferredSize(new Dimension(600,600));
