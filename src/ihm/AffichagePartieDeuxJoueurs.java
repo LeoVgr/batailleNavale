@@ -82,6 +82,11 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 
 		jl_tour = new JLabel("");
 		
+		gridContraintes.gridx = 0;
+		
+		gridContraintes.gridy=1;
+		jl_score= new JLabel("Score : "+partie.getJoueurs()[this.partie.getJoueurActuel()].getScore());
+		
 		ImageIcon image = new ImageIcon(this.getClass().getResource(""));
 		
 		// création bateau joueur 1
@@ -101,7 +106,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		jl_tour.setFont(font);
 		jl_score.setFont(font);
 		jp_tour.add(jl_tour);
-		jp_tour.add(jl_score);
+		jp_tour.add(jl_score,gridContraintes);
 		
 
 		plateauxBateaux = new AffichagePlateauBateaux[2];
@@ -111,7 +116,7 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 			plateauxBateaux[i] = new AffichagePlateauBateaux(partie, fenetreApp);
 		}
 		for(int i=0;i< plateauxTir.length; i++) {
-			plateauxTir[i] = new AffichagePlateauTir(partie, fenetreApp);
+			plateauxTir[i] = new AffichagePlateauTir(partie, fenetreApp,jl_score);
 		}
 
 

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -18,11 +19,12 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 	private AffichageBoutonGrillePlateauTirs[][] jb_case;
 	private JButton[] nomPosLettre;
 	private JButton[] nomPosChiffre;
+	private JLabel jl_score;
 
-	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp) {
+	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp, JLabel jl_score) {
 		this.partie=partie;
 		this.fenetreApp=fenetreApp;
-
+		this.jl_score=jl_score;
 
 		// création des composants graphiques 
 		jb_case = new AffichageBoutonGrillePlateauTirs[10][10];
@@ -110,18 +112,22 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		case "touché":
 			image = new ImageIcon(this.getClass().getResource("/boom.jpg"));
 			this.jb_case[i][j].setIcon(image);
+			this.partie.getJoueurs()[this.partie.getJoueurActuel()].setScore(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getScore()+100);
+			jl_score.setText(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getScore()+"");
 			break;
 
 		case "eau":
 			image = new ImageIcon(this.getClass().getResource("/eau.jpg"));
 			System.out.println(image == null);
 			this.jb_case[i][j].setIcon(image);
+			this.partie.getJoueurs()[this.partie.getJoueurActuel()].setScore(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getScore()-50);
 			break;
 
 		case "coulé":
 			image = new ImageIcon(this.getClass().getResource("/boom.jpg"));
 			this.jb_case[i][j].setIcon(image);
 			Object[] options = {"Ok"};
+			this.partie.getJoueurs()[this.partie.getJoueurActuel()].setScore(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getScore()+200);
 			JOptionPane.showOptionDialog(this,
 					"Bateau coulé !",
 					"Attention",
