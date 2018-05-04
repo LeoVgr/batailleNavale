@@ -33,11 +33,8 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 	
 	
 	
-	
 	public AffichageMenuDeuxJoueurs(AffichageFenetreApplication fenetreAppConstr) {
 		
-	
-	
 	
 	
 	this.fenetreApp=fenetreAppConstr;
@@ -134,10 +131,12 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		if(e.getSource()==jl_nouvellePartie || e.getSource()==jl_retour) {
+		if(e.getSource()==jl_nouvellePartie ) {
 			jl_nouvellePartie.setForeground(new Color(175,166,164));
 		}
-		
+		if (e.getSource()==jl_retour) {
+		jl_retour.setForeground(new Color(175,166,164));
+		}
 	}
 
 	@Override

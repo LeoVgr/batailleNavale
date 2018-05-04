@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import metier.Joueur;
 import metier.Partie;
 
 public class AffichagePlateauTir extends JPanel implements ActionListener{
@@ -21,7 +22,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 	private JButton[] nomPosChiffre;
 	
 
-	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp, JLabel jl_score) {
+	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp, JLabel jl_score, Joueur joueur) {
 		this.partie=partie;
 		this.fenetreApp=fenetreApp;
 		
@@ -30,7 +31,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 		jb_case = new AffichageBoutonGrillePlateauTirs[10][10];
 		for(int compteurLettre=0; compteurLettre<10; compteurLettre ++) {
 			for(int compteurChiffre=0; compteurChiffre<10; compteurChiffre ++) {
-				jb_case[compteurLettre][compteurChiffre] = new AffichageBoutonGrillePlateauTirs(partie,compteurLettre,compteurChiffre);
+				jb_case[compteurLettre][compteurChiffre] = new AffichageBoutonGrillePlateauTirs(partie,compteurLettre,compteurChiffre, joueur);
 			}	
 		}
 
@@ -107,6 +108,13 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 
 		// le joueur actuel tir sur le plateau bateau du joueur adverse
 		ImageIcon image = new ImageIcon(this.getClass().getResource(""));
+		
+		
+		
+		System.out.println(e.getSource());
+		
+		
+		
 		switch(this.partie.getJoueurs()[this.partie.getJoueurActuel()].tirer(this.partie.getJoueurs()[this.partie.joueurAdverse(this.partie.getJoueurActuel())], i, j))
 		{
 		
@@ -139,7 +147,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 			break;
 
 		case "gagné":
-			fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom()));
+			fenetreApp.changePanel(this, new AffichageEcranVictoire(fenetreApp,this.partie.getJoueurs()[this.partie.getJoueurActuel()].getNom(), this.partie));
 
 		default :
 			Object[] options2 = {"Ok"};

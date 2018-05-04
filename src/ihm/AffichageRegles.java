@@ -20,6 +20,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 	private JLabel jl_placement;
 	private JLabel jl_tirer;
 	private JLabel jl_but;
+	private JLabel jl_point;
 	
 	private JLabel jl_retour;
 	
@@ -60,6 +61,15 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			
 			Font font2 = new Font("Arial",Font.PLAIN,15);
 			
+			jl_point = new JLabel("<html><h2>Points</h2>"
+					+ "<br>"
+					+ "<br>Quand vous touchez un bateau, votre score augmente de 100."
+					+ "<br>Si vous le coulez, il augmente de 200."
+					+ "<br>Si vous tirez dans l'eau, votre score diminue de 10."
+					+ "</html>");
+			jl_point.setFont(font2);
+			
+			
 			jl_but = new JLabel("<html><center>Le but de ce jeu est de tirer sur tous les bateaux du joueur adverse et de les couler.</center></html>");
 			jl_but.setFont(font2);
 			
@@ -86,7 +96,7 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			
 			jl_placement = new JLabel("<html><h2><center>Placement des bateaux</center></h2>"
 					+ "<br>"
-					+ "<br>Pour placer un bateau, il faut cliquer sur le nom du bateau souhaité, puis cliquer sur une case de la grille. "
+					+ "<br>Pour placer un bateau, il faut cliquer sur le nom du bateau souhaité (ou son image), puis cliquer sur une case de la grille. "
 					+ "<br>Il se placera verticalement. Si vous voulez le placer horizontalement, il faut appuyer sur <b>'R'</b> une fois le bateau sélectionné."
 					+ "<br>"
 					+ "S'il n'y a pas la place suffisante, un message d'erreur apparaîtra. Vous pourrez ensuite le replacer."
@@ -141,6 +151,11 @@ public class AffichageRegles extends JPanel implements MouseListener{
 			gridContraintes.gridy=0;
 			gridContraintes.insets = new Insets(0, 30, 0, 0);
 			jp_listeBat.add(jl_listeBat, gridContraintes);
+			
+			gridContraintes.gridx=0;
+			gridContraintes.gridy=1;
+			gridContraintes.insets = new Insets(0, 30, 0, 0);
+			jp_listeBat.add(jl_point, gridContraintes);
 			
 			
 			this.add(jp_bas, BorderLayout.SOUTH);
