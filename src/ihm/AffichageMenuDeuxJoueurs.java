@@ -18,11 +18,8 @@ import metier.Partie;
 public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 	private AffichageFenetreApplication fenetreApp;
 
-	
-	
 	private JLabel jl_nouvellePartie;
 	private JLabel jl_retour;
-
 	
 	private JTextField jtf_nomJ1;
 	private JTextField jtf_nomJ2;
@@ -39,7 +36,6 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 	 */
 	public AffichageMenuDeuxJoueurs(AffichageFenetreApplication fenetreAppConstr) {
 		
-	
 	
 	this.fenetreApp=fenetreAppConstr;
 	
@@ -94,15 +90,11 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 	gridContraintes.gridy =2;
 	gridContraintes.insets = new Insets(30, 0, 30, 0);
 	this.add(jl_retour, gridContraintes);
-		
-	
-	
 	
 	jl_nouvellePartie.addMouseListener(this);
 	jl_retour.addMouseListener(this);
 	
 	this.add(jl_texte, gridContraintes);
-	
 	
 	
 	// création est mise en place de la police des textes du menu
@@ -113,8 +105,6 @@ public class AffichageMenuDeuxJoueurs extends JPanel implements MouseListener{
 	jl_nomJ2.setFont(font);
 	jl_retour.setFont(font);
 	jl_nouvellePartie.setFont(font);
-	
-	
 	
 	
 	

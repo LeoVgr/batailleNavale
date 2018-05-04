@@ -127,7 +127,7 @@ public class Bateau {
 
 	/**
 	 * Méthode qui permet de connaître les cases sur lequel le bateau est. En retour nous avons un tableau de 
-	 * Case. ATTENTION : la taille du tableau retourné sera variable (la taille du tableau est égale à la taille
+	 * Case. ATTENTION : la taille du tableau retournée sera variable (la taille du tableau est égale à la taille
 	 * du bateau).
 	 * Si le bateau dépasse de la grille, alors la fonction renverra un tableau de cases null
 	 * @return

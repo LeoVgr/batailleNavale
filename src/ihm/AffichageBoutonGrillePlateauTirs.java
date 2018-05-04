@@ -2,10 +2,8 @@ package ihm;
 
 import java.awt.Color;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import metier.Joueur;
 import metier.Partie;
 
 public class AffichageBoutonGrillePlateauTirs extends JButton{

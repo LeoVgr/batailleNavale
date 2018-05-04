@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import metier.Partie;
@@ -47,10 +46,6 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 		nomPosChiffre = new JButton[11];
 		
 	
-		
-		
-		
-		
 		
 		for(int i =0; i<nomPosChiffre.length;i++) {
 			nomPosChiffre[i]=new JButton(chiffre[i]);
@@ -134,18 +129,13 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 					
 					
 					// test si le bateau loge ou non
-					if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCase()==null) {
-						System.out.println("Erreur de placement");
+					if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCase()!=null) {
 						
-					}else {
 						// on test si le bateau ne chevauche pas un autre 
-						if(this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].chevaucheUnAutreBateau()){
-							System.out.println("chevauchement");
-						}else {
+						if(!this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].chevaucheUnAutreBateau()){
+							
 							// on place le bateau
 							for(int ip =0;ip<this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCase().length;ip++) {
-								
-								
 								
 
 								jb_case[this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].getMesCase()[ip].getPositionX()]
@@ -161,7 +151,6 @@ public class AffichagePlateauBateaux extends JPanel implements ActionListener,Mo
 					}
 						
 				}else {
-					System.out.println("bateau déja placé");
 					this.partie.getJoueurs()[this.partie.getJoueurActuel()].getBateaux()[ig].setEstSelectionner(false);
 				}
 					

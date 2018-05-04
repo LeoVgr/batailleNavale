@@ -172,7 +172,9 @@ public class AffichageRegles extends JPanel implements MouseListener{
 		}
 
 
-
+		/**
+		 * Permet de revenir a l'ecran du menu. 
+		 */
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getSource()==jl_retour) {
@@ -182,7 +184,9 @@ public class AffichageRegles extends JPanel implements MouseListener{
 		}
 
 
-
+		/**
+		 * permet de faire les effets grisé lorsque la souris passe sur l'option
+		 */
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			if(e.getSource()==jl_retour) {
@@ -193,6 +197,9 @@ public class AffichageRegles extends JPanel implements MouseListener{
 
 
 
+		/**
+		 * permet de rétablir la couleur initiale du texte lorsque l'utilisateur passe sur l'option.
+		 */
 		@Override
 		public void mouseExited(MouseEvent arg0) {
 			jl_retour.setForeground(new Color(0,0,0));

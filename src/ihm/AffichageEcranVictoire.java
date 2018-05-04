@@ -1,7 +1,5 @@
 package ihm;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -9,13 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -39,28 +31,13 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 	
 	public AffichageEcranVictoire(AffichageFenetreApplication fenetreAppConstr, String gagnant, Partie partie, int compteur) {
  
-		try {
-	        URL resource = this.getClass().getResource("/son.wav");
-	        AudioClip ac = Applet.newAudioClip(resource);
-	        ac.play();
-	        } catch (Exception e) {
-	            System.out.println(e);
-	        }
-	        
-	        
-	        /*URL resource = this.getClass().getResource("/imageAppli.jpg");
-	        BufferedImage image = null;
-	        try {
-	            image = ImageIO.read(resource);
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }*/
-	        
+	
 		this.partie=partie;
 		
 		this.compteur=compteur;
 		
 		this.fenetreApp=fenetreAppConstr;
+		this.fenetreApp.playSound();
 		
 		this.setLayout(new GridBagLayout());
 		this.gridContraintes = new GridBagConstraints();
@@ -69,7 +46,7 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 		
 		Font font = new Font("Arial",Font.BOLD,40);
 		
-		jl_gagnant = new JLabel( gagnant +" a gagnï¿½ !");
+		jl_gagnant = new JLabel( gagnant +" a gagné !");
 		jl_gagnant.setFont(font);
 		
 		jl_score = new JLabel( "<html>Score : "+this.partie.getJoueurs()[this.partie.getJoueurActuel()].getScore()+"<br>Tour : "+compteur);
@@ -107,7 +84,7 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 	}
 
 	/**
-	 * Mï¿½thode qui permet que lorsque le joueur clic sur le JLabel fin, qu'il revienne au menu de dï¿½marage.
+	 * Methode qui permet que lorsque le joueur clic sur le JLabel fin, qu'il revienne au menu de demarage.
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -127,7 +104,7 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 		
 	}
 	/**
-	 * Permet de rï¿½tablir la couleur du texte lorsque la souris n'est plus sur le label
+	 * Permet de retablir la couleur du texte lorsque la souris n'est plus sur le label
 	 */
 	@Override
 	public void mouseExited(MouseEvent arg0) {
@@ -146,4 +123,5 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
+	
 }

@@ -4,7 +4,10 @@ public class Plateau {
 	private Case[][] grille;
 	Joueur joueur;
 	
-	
+	/**
+	 * Constructeur par défaut de la classe Plateau. Ce constructeur construit un objet sans initialiesr les 
+	 * variables de l'objet Plateau.
+	 */
 	public Plateau() {
 		
 	}
@@ -43,9 +46,5 @@ public class Plateau {
 		this.joueur = joueur;
 	}
 
-	
-	
-
-	
 	
 }

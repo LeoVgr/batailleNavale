@@ -295,7 +295,6 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 		this.requestFocus();
 
       
-        this.requestFocus();
 	}
 
 	/**
