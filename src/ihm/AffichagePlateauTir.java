@@ -22,12 +22,19 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 	private JButton[] nomPosChiffre;
 	private int compteur;
 	
+	/**
+	 * Constructeur du panel qui affiche la grille de bateaux. Ce panel permet de gérer les évènement lié à cette grille.
+	 * @param partieConstr Controlleur
+	 * @param fenetre Fenetre de l'application
+	 * @param JLabel jl_score score du joueur
+	 * @param int compteur nombre de tours joues
+	 */
 	public AffichagePlateauTir(Partie partie, AffichageFenetreApplication fenetreApp, JLabel jl_score, int compteur) {
 		this.partie=partie;
 		this.fenetreApp=fenetreApp;
 		this.compteur=compteur;
 
-		// crï¿½ation des composants graphiques 
+		// creation des composants graphiques 
 		jb_case = new AffichageBoutonGrillePlateauTirs[10][10];
 		for(int compteurLettre=0; compteurLettre<10; compteurLettre ++) {
 			for(int compteurChiffre=0; compteurChiffre<10; compteurChiffre ++) {
@@ -59,7 +66,7 @@ public class AffichagePlateauTir extends JPanel implements ActionListener{
 			this.add(nomPosLettre[i]);
 		}
 
-		// dï¿½finition des layout
+		// definition des layout
 		this.setLayout(new GridLayout(11,11));
 
 		// ajout des composants 

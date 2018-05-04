@@ -29,6 +29,14 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 	
 	private GridBagConstraints gridContraintes;
 	
+	/**
+	 * Constructeur de l'ecran de victoire/fin du jeu. 
+	 * Affiche le joueur gagnant, son score, le nombre de tours joues
+	 * @param fenetreAppConstr Fenetre de l'application
+	 * @param String gagnant le nom du joueur qui a gagné
+	 * @param partie Controleur
+	 * @param int compteur le nombre de tours joués
+	 */
 	public AffichageEcranVictoire(AffichageFenetreApplication fenetreAppConstr, String gagnant, Partie partie, int compteur) {
  
 	
@@ -37,7 +45,7 @@ public class AffichageEcranVictoire extends JPanel  implements MouseListener{
 		this.compteur=compteur;
 		
 		this.fenetreApp=fenetreAppConstr;
-		this.fenetreApp.playSound();
+		this.fenetreApp.playSoundVictoire();
 		
 		this.setLayout(new GridBagLayout());
 		this.gridContraintes = new GridBagConstraints();

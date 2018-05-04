@@ -22,8 +22,8 @@ public class AffichageMenuDemarrage extends JPanel implements MouseListener{
 	private JLabel jl_quitter;
 	
 	/**
-	 * Constrcuteur de la classe AffichageMenuDemarrage. Permet l'affichage d'un menu de démarrage avec trois choix possible.
-	 * Gère également les évèenements lié au menu.
+	 * Constructeur de la classe AffichageMenuDemarrage. Permet l'affichage d'un menu de démarrage avec trois choix possible.
+	 * Gère également les évènements liés au menu.
 	 * @param fenetreAppConstr Fenetre de l'application
 	 */
 	public AffichageMenuDemarrage(AffichageFenetreApplication fenetreAppConstr) {

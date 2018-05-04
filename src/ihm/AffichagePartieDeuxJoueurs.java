@@ -62,9 +62,9 @@ public class AffichagePartieDeuxJoueurs extends JPanel implements ActionListener
 	
 	/**
 	 * Constructeur par défaut du Panel de la partie. Ce panel gère une partie de deux joueurs.
-	 * Il contient d'autre panel ainsi que des listener permettant d'intérargir avec l'utilisateur.
+	 * Il contient d'autres panels ainsi que des listener permettant d'intéragir avec l'utilisateur.
 	 * @param fenetreApp Fenetre de l'application
-	 * @param partie Controlleur
+	 * @param partie Controleur
 	 */
 	public AffichagePartieDeuxJoueurs(AffichageFenetreApplication fenetreApp, Partie partie) {
 		

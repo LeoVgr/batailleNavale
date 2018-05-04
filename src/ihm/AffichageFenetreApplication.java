@@ -61,9 +61,13 @@ public class AffichageFenetreApplication extends JFrame  {
 		this.validate();
 	
 	}
-	public void playSound() {
+	/**
+	 * Méthode permettant de lancer une musique sur l'ecran de victoire
+	 */
+	public void playSoundVictoire() {
 	    try {
-	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("/son.wav"));
+	    	URL file = this.getClass().getResource("/sonVictoire.wav");
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
 	        Clip clip = AudioSystem.getClip();
 	        clip.open(audioInputStream);
 	        clip.start();
